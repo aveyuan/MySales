@@ -1,0 +1,55 @@
+<form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
+    <input type="hidden" name="id" value="{{.product.Id}}">
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">产品名称</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="name" value="{{.product.Name}}">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">产品编号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="code" value="{{.product.Code}}">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">生产日期</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="stime" name="productiondate" value="{{.product.ProductionDate}}">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">保质期</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="shelflife" value="{{.product.ShelfLife}}">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">生产批号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="productionbatch" value="{{.product.Productionbatch}}">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">批准文号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="approvalnumber" value="{{.product.Approvalnumber}}">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">生产厂家</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="manufacturer" value="{{.product.Manufacturer}}">
+        </div>
+    </div>
+    <button type="submit" class="layui-btn layui-btn-normal">更新产品新</button>
+</form>
+<script>
+    layui.use('laydate',function () {
+        var laydate = layui.laydate;
+
+        laydate.render({
+            elem:'#stime'
+        });
+    });
+</script>

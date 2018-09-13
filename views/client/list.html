@@ -1,0 +1,28 @@
+<div>
+    <table class="layui-table">
+        <thead>
+            <td>ID</td>
+            <td>姓名</td>
+            <td>电话</td>
+            <td>地址</td>
+            <td>信箱</td>
+            <td>备注</td>
+            <td>操作</td>
+        </thead>
+        <tbody>
+            {{range .clients}}
+            <tr>
+                <td>{{.Id}}</td>
+                <td>{{.Name}}</td>
+                <td>{{.Phone}}</td>
+                <td>{{.Address}}</td>
+                <td>{{.Postid}}</td>
+                <td>{{.Remarks}}</td>
+                <td>
+                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a href="{{urlfor "ClientController.Update"}}?id={{.Id}}">编辑</a></button>
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,32 @@
+<div>
+<table class="layui-table">
+    <thead>
+        <td>ID</td>
+        <td>客户</td>
+        <td>客户电话</td>
+        <td>购买产品</td>
+        <td>产品数量</td>
+        <td>状态</td>
+        <td>下单日期</td>
+        <td>操作</td>
+    </thead>
+    <tbody>
+        {{range .sales}}
+        <tr>
+            <td>{{.id}}</td>
+            <td>{{.clientname}}</td>
+            <td>{{.phone}}</td>
+            <td>
+                {{range .salespd}}
+                    {{.SalesPdname}}&nbsp;&nbsp;
+                {{end}}
+            </td>
+            <td>{{len .salespd}}</td>
+            <td>{{.status}}</td>
+            <td>{{.date}}</td>
+            <td><a href="{{urlfor "SalesController.Detail"}}?id={{.id}}">详情</a></td>
+        </tr>
+        {{end}}
+    </tbody>
+</table>
+</div>

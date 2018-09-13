@@ -1,0 +1,54 @@
+<form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">产品名称</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="name">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">产品编号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="code">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">生产日期</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="stime" name="productiondate">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">保质期</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="shelflife">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">生产批号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="productionbatch">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">批准文号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="approvalnumber">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">生产厂家</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="manufacturer">
+        </div>
+    </div>
+    <button type="submit" class="layui-btn layui-btn-normal">添加产品</button>
+</form>
+<script>
+    layui.use('laydate',function () {
+        var laydate = layui.laydate;
+
+        laydate.render({
+            elem:'#stime'
+        });
+    });
+</script>

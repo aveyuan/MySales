@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.pagetitle}}</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="/static/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-bg-black">
+        <div class="layui-container">
+            <div class="layui-row">
+                <ul class="layui-nav">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">客户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="{{urlfor "ClientController.List"}}">客户列表</a></dd>
+                            <dd><a href="{{urlfor "ClientController.Add"}}">新增客户</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">商品管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="{{urlfor "ProductController.List"}}">商品列表</a></dd>
+                            <dd><a href="{{urlfor "ProductController.Add"}}">添加商品</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">销售管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="{{urlfor "SalesController.List"}}">销售列表</a></dd>
+                            <dd><a href="{{urlfor "SalesController.Add"}}">新增销售</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="#">个人设置</a></li>
+                    <li class="layui-nav-item"><a href="#">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<div class="layui-container">
+    <div class="layui-row">
+        {{.LayoutContent}}
+    </div>
+</div>
+<div class="layui-footer">
+    这是页脚
+</div>
+</div>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>

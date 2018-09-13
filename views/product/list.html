@@ -1,0 +1,31 @@
+<div>
+<table class="layui-table">
+    <thead>
+        <td>ID</td>
+        <td>产品名称</td>
+        <td>产品编码</td>
+        <td>批准文号</td>
+        <td>生产日期</td>
+        <td>生产批号</td>
+        <td>保质期</td>
+        <td>生产厂商</td>
+        <td>操作</td>
+
+    </thead>
+    <tbody>
+        {{range .products}}
+        <tr>
+            <td>{{.Id}}</td>
+            <td>{{.Name}}</td>
+            <td>{{.Code}}</td>
+            <td>{{.Approvalnumber}}</td>
+            <td>{{.ProductionDate}}</td>
+            <td>{{.Productionbatch}}</td>
+            <td>{{.ShelfLife}}</td>
+            <td>{{.Manufacturer}}</td>
+            <td><button class="layui-btn layui-btn-sm"><a href="{{urlfor "ProductController.Update"}}?id={{.Id}}">编辑</a></button></td>
+        </tr>
+        {{end}}
+    </tbody>
+</table>
+</div>
