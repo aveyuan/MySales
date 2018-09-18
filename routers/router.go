@@ -20,4 +20,6 @@ func init() {
     beego.Router("/sales/list",&controllers.SalesController{},"*:List")
     beego.Router("/sales/detail",&controllers.SalesController{},"*:Detail")
     beego.Router("/sales/status",&controllers.SalesController{},"*:Upstatus")
+    beego.Router("/login",&controllers.LoginController{},"*:Login")
+    beego.Router("/reg",&controllers.LoginController{},"*:Reg")
 }
