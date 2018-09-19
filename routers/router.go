@@ -22,4 +22,6 @@ func init() {
     beego.Router("/sales/status",&controllers.SalesController{},"*:Upstatus")
     beego.Router("/login",&controllers.LoginController{},"*:Login")
     beego.Router("/reg",&controllers.LoginController{},"*:Reg")
+    beego.Router("/updatepass",&controllers.LoginController{},"*:UpdatePass")
+    beego.Router("/updatenike",&controllers.LoginController{},"*:UpdateNike")
 }

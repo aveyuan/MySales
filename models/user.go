@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	"fmt"
 )
 
 //用户表
@@ -27,4 +28,28 @@ func (this *User)Add()error  {
 		return err
 	}
 	return nil
+}
+
+func (this *User)UpdatePassword()error  {
+	o := orm.NewOrm()
+	if _,err := o.Update(this,"Password","Nikename");err !=nil{
+		return err
+	}
+	return nil
+}
+
+func (this *User)UpdateNikename()error  {
+	o := orm.NewOrm()
+	if _,err := o.Update(this,"Nikename");err !=nil{
+		return err
+	}
+	return nil
+}
+
+func (this *User)List()*User  {
+	o := orm.NewOrm()
+	user := User{}
+	o.QueryTable(User{}).One(&user)
+	fmt.Println(user.Nikename)
+	return &user
 }
