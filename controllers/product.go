@@ -10,6 +10,7 @@ type ProductController struct {
 }
 
 func (this *ProductController)Add()  {
+	this.IsLogin()
 	if this.IsPost(){
 		name := this.Ctx.Request.PostForm.Get("name")
 		code := this.Ctx.Request.PostForm.Get("code")
@@ -33,6 +34,7 @@ func (this *ProductController)Add()  {
 }
 
 func (this *ProductController)List()  {
+	this.IsLogin()
 	product := &models.Product{}
 	products := product.List()
 	this.Data["pagetitle"]="产品显示页面"

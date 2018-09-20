@@ -33,8 +33,17 @@
                             <dd><a href="{{urlfor "SalesController.Add"}}">新增销售</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item"><a href="#">个人设置</a></li>
-                    <li class="layui-nav-item"><a href="#">退出登录</a></li>
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">个人设置</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="{{urlfor "LoginController.UpdatePass"}}">修改密码</a></dd>
+                            <dd><a href="{{urlfor "LoginController.UpdateNike"}}">修改昵称</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="{{urlfor "LoginController.Logout"}}">退出登录</a></li>
+                </ul>
+
                 </ul>
             </div>
         </div>
@@ -43,13 +52,8 @@
     <div class="layui-row">
         {{.LayoutContent}}
     </div>
-    <div class="layui-footer">
-
-            这是页脚
-
-    </div>
 </div>
-
+</div>
 <script>
     //JavaScript代码区域
     layui.use('element', function(){

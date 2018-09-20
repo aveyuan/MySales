@@ -9,6 +9,7 @@ type ClientController struct {
 }
 
 func (this *ClientController)Add()  {
+	this.IsLogin()
 	if this.IsPost(){
 		name := this.Ctx.Request.PostForm.Get("name")
 		phone := this.Ctx.Request.PostForm.Get("phone")
@@ -29,6 +30,7 @@ func (this *ClientController)Add()  {
 }
 
 func (this *ClientController)List()  {
+	this.IsLogin()
 	client := &models.Client{}
 	clients := client.List()
 	this.Data["clients"]=clients
@@ -38,6 +40,7 @@ func (this *ClientController)List()  {
 }
 
 func (this *ClientController)Update()  {
+	this.IsLogin()
 	if this.IsPost(){
 		id,err := this.GetInt("id")
 			if err!=nil{

@@ -11,6 +11,7 @@ type SalesController struct {
 }
 
 func (this *SalesController)Add()  {
+	this.IsLogin()
 	if this.IsPost(){
 		clientid,_ := this.GetInt("client")
 		idclient := &models.Client{Id:clientid}
@@ -68,6 +69,7 @@ func (this *SalesController)Add()  {
 }
 
 func (this *SalesController)List()  {
+	this.IsLogin()
 	sales := new(models.Sales)
 	saless := sales.List()
 	//只能在这里显示一下简单的信息了
@@ -94,6 +96,7 @@ func (this *SalesController)List()  {
 }
 
 func (this *SalesController)Detail()  {
+	this.IsLogin()
 	//获取传送过来的slaesid并取得sales
 	salesid,_ := this.GetInt("id")
 	ssales := &models.Sales{Id:salesid}
@@ -125,6 +128,7 @@ func (this *SalesController)Detail()  {
 }
 
 func (this *SalesController)Upstatus()  {
+	this.IsLogin()
 	salesid,_ := this.GetInt("id")
 	ssales := &models.Sales{Id:salesid,Status:"取消"}
 	if err := ssales.Cancel();err !=nil{
