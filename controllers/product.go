@@ -35,10 +35,22 @@ func (this *ProductController)Add()  {
 
 func (this *ProductController)List()  {
 	this.IsLogin()
+	limit,err := this.GetInt("limit")
+	if err !=nil{
+		limit=10
+	}
+	page,err := this.GetInt("page")
+	if err != nil{
+		page=1
+	}
 	product := &models.Product{}
-	products := product.List()
+
+	products := product.ListLimit(limit,page)
 	this.Data["pagetitle"]="产品显示页面"
 	this.Data["products"]=products
+	this.Data["pagecount"]=len(product.List())
+	this.Data["pagelimit"]=limit
+	this.Data["page"]=page
 	this.Layout="public/layout.html"
 	this.TplName="product/list.html"
 }

@@ -70,8 +70,17 @@ func (this *SalesController)Add()  {
 
 func (this *SalesController)List()  {
 	this.IsLogin()
+	limit,err := this.GetInt("limit")
+	if err !=nil{
+		limit=10
+	}
+	page,err := this.GetInt("page")
+	if err != nil{
+		page=1
+	}
 	sales := new(models.Sales)
-	saless := sales.List()
+
+	saless := sales.ListLimit(limit,page)
 	//只能在这里显示一下简单的信息了
 	list := make([]map[string]interface{},len(saless))
 	for k,v := range saless{
@@ -91,6 +100,9 @@ func (this *SalesController)List()  {
 	}
 	this.Data["sales"]=list
 	this.Data["pagetitle"]="显示销售单"
+	this.Data["pagecount"]=len(sales.List())
+	this.Data["pagelimit"]=limit
+	this.Data["page"]=page
 	this.Layout="public/layout.html"
 	this.TplName="sales/list.html"
 }

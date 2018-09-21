@@ -5,7 +5,7 @@
             <td>姓名</td>
             <td>电话</td>
             <td>地址</td>
-            <td>信箱</td>
+            <td>邮编</td>
             <td>备注</td>
             <td>操作</td>
         </thead>
@@ -26,3 +26,29 @@
         </tbody>
     </table>
 </div>
+<div id="pages"></div>
+
+
+<script>
+    layui.use(['form','laypage','jquery'],function () {
+        var form = layui.form,
+                $ = layui.$,
+                laypage = layui.laypage;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {{.pagecount}}
+            ,curr:{{.page}}
+            ,limit:{{.pagelimit}}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            ,jump: function(obj, first){
+
+                //首次不执行
+                if(!first){
+                    location.href="{{urlfor "ClientController.List"}}?page="+obj.curr+"&limit="+obj.limit;
+
+                }
+            }
+        });
+    });
+</script>

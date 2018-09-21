@@ -35,6 +35,13 @@ func (this *Product)List()[]*Product  {
 	return products
 }
 
+func (this *Product)ListLimit(limit,page int)[]*Product  {
+	var products []*Product
+	o := orm.NewOrm()
+	o.QueryTable(Product{}).Limit(limit,(page-1)*limit).All(&products)
+	return products
+}
+
 func (this *Product)IdProduct()*Product {
 	o := orm.NewOrm()
 	o.Read(this)

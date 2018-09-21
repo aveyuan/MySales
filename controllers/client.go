@@ -31,10 +31,21 @@ func (this *ClientController)Add()  {
 
 func (this *ClientController)List()  {
 	this.IsLogin()
+	limit,err := this.GetInt("limit")
+	if err !=nil{
+		limit=10
+	}
+	page,err := this.GetInt("page")
+	if err != nil{
+		page=1
+	}
 	client := &models.Client{}
-	clients := client.List()
+	clients := client.ListLimit(limit,page)
 	this.Data["clients"]=clients
 	this.Data["pagetitle"]="用户列表"
+	this.Data["pagecount"]=len(client.List())
+	this.Data["pagelimit"]=limit
+	this.Data["page"]=page
 	this.Layout="public/layout.html"
 	this.TplName="client/list.html"
 }
@@ -70,6 +81,7 @@ func (this *ClientController)Update()  {
 		this.TplName="client/update.html"
 	}
 }
+
 //不允许删除，功能暂时不用
 //func (this *ClientController)Delete()  {
 //	id,err := this.GetInt("id")

@@ -33,6 +33,13 @@ func (this *Sales)List()[]*Sales  {
 	return saless
 }
 
+func (this *Sales)ListLimit(limit,page int)[]*Sales  {
+	var saless []*Sales
+	o := orm.NewOrm()
+	o.QueryTable(Sales{}).Limit(limit,(page-1)*limit).All(&saless)
+	return saless
+}
+
 func (this *Sales)GetSales()(*Sales,error)  {
 	o := orm.NewOrm()
 	if err := o.Read(this);err !=nil{

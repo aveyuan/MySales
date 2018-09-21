@@ -33,6 +33,13 @@ func (this *Client)List()[]*Client  {
 	return clients
 }
 
+func (this *Client)ListLimit(limit,page int)[]*Client  {
+	o := orm.NewOrm()
+	var clients []*Client
+	o.QueryTable(Client{}).Limit(limit,(page-1)*limit).All(&clients)
+	return clients
+}
+
 func (this *Client)IdClinet()*Client {
 	o := orm.NewOrm()
 	o.Read(this)
