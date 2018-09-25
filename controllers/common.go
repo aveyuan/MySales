@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 
 	"time"
+	"html/template"
 )
 
 type BaseController struct {
@@ -24,4 +25,8 @@ func (this *BaseController)IsLogin()  {
 		this.Redirect(beego.URLFor("LoginController.Login"),302)
 
 	}
+}
+
+func (this *BaseController)Xsrf()  {
+	this.Data["xsrfdata"]=template.HTML(this.XSRFFormHTML())
 }

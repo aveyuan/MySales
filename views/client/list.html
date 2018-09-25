@@ -1,3 +1,15 @@
+<form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
+{{ .xsrfdata }}
+    <div class="layui-form-item" >
+        <div class=" layui-col-md9">
+            <input type="text" class="layui-input" name="key" placeholder="可输入姓名,电话，地址查询" value="{{.key}}">
+        </div>
+        <div class="layui-col-md3">
+            <button class="layui-btn layui-btn-sm">搜索</button>
+        </div>
+    </div>
+</form>
+
 <div>
     <table class="layui-table">
         <thead>
@@ -45,7 +57,7 @@
 
                 //首次不执行
                 if(!first){
-                    location.href="{{urlfor "ClientController.List"}}?page="+obj.curr+"&limit="+obj.limit;
+                    location.href="{{urlfor "ClientController.List"}}?page="+obj.curr+"&limit="+obj.limit+"&key="+{{.key}};
 
                 }
             }

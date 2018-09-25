@@ -23,6 +23,7 @@ func (this *LoginController)Login()  {
 		this.SetSession("username",user)
 		this.Redirect(beego.URLFor("MainController.Get"),302)
 	}else {
+		this.Xsrf()
 		this.Data["pagetitle"]="登录系统"
 		this.TplName="login/index.html"
 	}
@@ -46,6 +47,7 @@ func (this *LoginController)Reg()  {
 		}
 		this.Ctx.WriteString("注册成功")
 	}else {
+		this.Xsrf()
 		this.Data["pagetitle"]="注册账号"
 		this.TplName="login/reg.html"
 	}
@@ -75,6 +77,7 @@ func (this *LoginController)UpdatePass()  {
 	}else {
 		this.Data["pagetitle"]="修改密码"
 		user := &models.User{}
+		this.Xsrf()
 		this.Data["user"]=user.List()
 		this.TplName="login/update.html"
 	}
@@ -98,6 +101,7 @@ func (this *LoginController)UpdateNike()  {
 	}else {
 		this.Data["pagetitle"]="修改昵称"
 		user := &models.User{}
+		this.Xsrf()
 		this.Data["user"]=user.List()
 		this.TplName="login/updatenike.html"
 	}

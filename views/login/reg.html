@@ -16,6 +16,7 @@
         <h3>Sales后台系统登录</h3>
         <div class="m-login-warp">
             <form action="" method="post" class="layui-form">
+            {{ .xsrfdata }}
             <div class="layui-form-item">
                 <input type="text" name="username" class="layui-input" placeholder="用户名">
             </div>

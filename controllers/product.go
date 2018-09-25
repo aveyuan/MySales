@@ -27,6 +27,7 @@ func (this *ProductController)Add()  {
 
 		}
 	}else {
+		this.Xsrf()
 		this.Data["pagetitle"]="添加产品"
 		this.Layout="public/layout.html"
 		this.TplName="product/add.html"
@@ -81,6 +82,7 @@ func (this *ProductController)Update()  {
 			this.Ctx.WriteString("数据有误")
 		}
 		product := &models.Product{Id:id}
+		this.Xsrf()
 		this.Data["product"]=product.IdProduct()
 		this.Data["pagetitle"]="修改用户信息页面"
 		this.Layout="public/layout.html"

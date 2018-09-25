@@ -60,6 +60,7 @@ func (this *SalesController)Add()  {
 		clients := client.List()
 		product := &models.Product{}
 		products := product.List()
+		this.Xsrf()
 		this.Data["clients"]=clients
 		this.Data["products"]=products
 		this.Data["pagetitle"]="新增销售"

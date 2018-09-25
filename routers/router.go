@@ -8,9 +8,9 @@ import (
 func init() {
     beego.Router("/", &controllers.MainController{})
     beego.Router("/client/add",&controllers.ClientController{},"*:Add")
-    beego.Router("/client/list",&controllers.ClientController{},"get:List")
+    beego.Router("/client/list",&controllers.ClientController{},"get,post:List")
     beego.Router("/client/update",&controllers.ClientController{},"*:Update")
-    beego.Router("/client/delete",&controllers.ClientController{},"*:Delete")
+    //beego.Router("/client/delete",&controllers.ClientController{},"*:Delete")
 
     beego.Router("/product/add",&controllers.ProductController{},"*:Add")
     beego.Router("/product/list",&controllers.ProductController{},"get:List")

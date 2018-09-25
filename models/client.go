@@ -33,11 +33,22 @@ func (this *Client)List()[]*Client  {
 	return clients
 }
 
-func (this *Client)ListLimit(limit,page int)[]*Client  {
+//一共返回两个变量，一个是显示当前的，另外一个是没有分页的，可以很好的返回总页数
+func (this *Client)ListLimit(limit,page int,key string)([]*Client,[]*Client)  {
 	o := orm.NewOrm()
 	var clients []*Client
-	o.QueryTable(Client{}).Limit(limit,(page-1)*limit).All(&clients)
-	return clients
+	var num []*Client
+	if key=="*"{
+		o.QueryTable(Client{}).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&clients)
+		o.QueryTable(Client{}).All(&num)
+	}else {
+		con := orm.NewCondition()
+		con1 := con.Or("Name",key).Or("Phone",key).Or("Address",key)
+		o.QueryTable(Client{}).SetCond(con1).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&clients)
+		o.QueryTable(Client{}).SetCond(con1).All(&num)
+
+	}
+	return clients,num
 }
 
 func (this *Client)IdClinet()*Client {
@@ -53,6 +64,7 @@ func (this *Client)Update()error  {
 	}
 	return nil
 }
+
 
 //不允许删除，功能暂时不用
 //func (this *Client)Delete()error  {
