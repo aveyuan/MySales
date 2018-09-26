@@ -35,11 +35,20 @@ func (this *Product)List()[]*Product  {
 	return products
 }
 
-func (this *Product)ListLimit(limit,page int)[]*Product  {
-	var products []*Product
+func (this *Product)ListLimit(limit,page int,key string)([]*Product,[]*Product)  {
 	o := orm.NewOrm()
-	o.QueryTable(Product{}).Limit(limit,(page-1)*limit).All(&products)
-	return products
+	var products []*Product
+	var num []*Product
+	if key == "*"{
+		o.QueryTable(Product{}).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&products)
+		o.QueryTable(Product{}).All(&num)
+	}else {
+		con := orm.NewCondition()
+		con1 := con.Or("Name",key).Or("Code__icontains",key).Or("Approvalnumber__icontains",key).Or("Manufacturer__icontains",key)
+		o.QueryTable(Product{}).SetCond(con1).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&products)
+		o.QueryTable(Product{}).SetCond(con1).All(&num)
+	}
+	return products,num
 }
 
 func (this *Product)IdProduct()*Product {
