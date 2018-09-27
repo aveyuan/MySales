@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"sales-project/models"
-	"strconv"
 	"fmt"
+	"strconv"
 )
 
 type SalesController struct {
@@ -27,8 +27,7 @@ func (this *SalesController)Add()  {
 			slnumber := this.GetStrings("number")
 			slproductid := this.GetStrings("product")
 			//三个统一的key不会错的，利用key来一个一个保存
-			for k,_ := range slnumber{
-				//如果产品的id是空的，那就跳过
+			for k,_ := range slunitprice{
 				if slproductid[k]==""{
 					continue
 				}
@@ -45,16 +44,17 @@ func (this *SalesController)Add()  {
 				idproduct := &models.Product{Id:productid}
 				//查询到产品
 				product := idproduct.IdProduct()
+				totails:=float64(unitprice*float32(number))
+				totail := strconv.FormatFloat(totails,'f',2,32)
+				ts,_ := strconv.ParseFloat(totail,32)
 				//将产品信息保存在销售产品pd表
-				salespd := &models.Salespd{Product:product,Sales:sals,SalesPdbatch:product.Productionbatch,SalesPdapnu:product.Approvalnumber,SalesPddate:product.ProductionDate,SalesPdmanufacturer:product.Manufacturer,SalesPdShelflife:product.ShelfLife,SalesPdname:product.Name,Unitprice:unitprice,Number:number}
+				salespd := &models.Salespd{Product:product,Sales:sals,SalesPdbatch:product.Productionbatch,SalesPdapnu:product.Approvalnumber,SalesPddate:product.ProductionDate,SalesPdmanufacturer:product.Manufacturer,SalesPdShelflife:product.ShelfLife,SalesPdname:product.Name,Unitprice:unitprice,Number:number,Totail:float32(ts)}
 				if err := salespd.Add();err != nil{
 					this.Ctx.WriteString("添加产品失败")
-				}else {
-					this.Redirect(this.URLFor(".List"),302)
 				}
 			}//结束了保存产品
 		}//结束了销售单保存失败
-		this.Ctx.WriteString("添加产品成功") //最后一个总的添加，表示订单和订单里面的产品都保存ok
+		this.Redirect(this.URLFor(".List"),302) //添加完成就跳转
 	}else {
 		client := &models.Client{}
 		clients := client.List()
@@ -79,9 +79,19 @@ func (this *SalesController)List()  {
 	if err != nil{
 		page=1
 	}
+	key := this.GetString("key")
+	if key == ""{
+		key = "*"
+	}
+	//如果提交的方式是搜索来的，必须定向到第一页
+	if this.IsPost(){
+		limit=10
+		page=1
+	}
 	sales := new(models.Sales)
 
-	saless := sales.ListLimit(limit,page)
+	saless,num := sales.ListLimit(limit,page,key)
+
 	//只能在这里显示一下简单的信息了
 	list := make([]map[string]interface{},len(saless))
 	for k,v := range saless{
@@ -97,11 +107,23 @@ func (this *SalesController)List()  {
 		row["status"]=v.Status
 		salespd := new(models.Salespd)
 		row["salespd"]=salespd.IdSales(v.Id)
+		var a float32
+		for _,v := range salespd.IdSales(v.Id){
+			a+=v.Totail
+		}
+		row["sums"]=a
+
 		list[k]=row
 	}
 	this.Data["sales"]=list
 	this.Data["pagetitle"]="显示销售单"
-	this.Data["pagecount"]=len(sales.List())
+	if key == "*"{
+		this.Data["key"]=""
+	}else{
+		this.Data["key"]=key
+	}
+	this.Xsrf()
+	this.Data["pagecount"]=len(num)
 	this.Data["pagelimit"]=limit
 	this.Data["page"]=page
 	this.Layout="public/layout.html"
@@ -119,7 +141,6 @@ func (this *SalesController)Detail()  {
 		this.Ctx.WriteString("数据有误")
 		this.StopRun()
 	}
-	fmt.Println(sales.SalesAddress)
 	//重组数据
 	list := make([]interface{},0)
 	row := make(map[string]interface{})
@@ -133,6 +154,12 @@ func (this *SalesController)Detail()  {
 	row["date"]=sales.SalesData
 	salespd := new(models.Salespd)
 	row["salespd"]=salespd.IdSales(salesid)
+	var a float32
+	for _,v := range salespd.IdSales(salesid){
+		a+=v.Totail
+	}
+	row["sums"]=a
+
 	list = append(list, row)
 	this.Data["pagetitle"]="订单详情"
 	this.Data["detail"]=list

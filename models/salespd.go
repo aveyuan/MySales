@@ -8,6 +8,7 @@ type Salespd struct {
 	Product	*Product `orm:"rel(fk)"`
 	Unitprice	float32
 	Number 		int
+	Totail		float32
 	SalesPdname	string
 	SalesPdapnu	string
 	SalesPddate  string

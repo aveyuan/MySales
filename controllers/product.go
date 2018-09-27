@@ -44,14 +44,29 @@ func (this *ProductController)List()  {
 	if err != nil{
 		page=1
 	}
-	product := &models.Product{}
-
-	products := product.ListLimit(limit,page)
-	this.Data["pagetitle"]="产品显示页面"
+	key := this.GetString("key")
+	if key == ""{
+		key = "*"
+	}
+	//如果提交的方式是搜索来的，必须定向到第一页
+	if this.IsPost(){
+		limit=10
+		page=1
+	}
+	client := &models.Product{}
+	products,snum := client.ListLimit(limit,page,key)
 	this.Data["products"]=products
-	this.Data["pagecount"]=len(product.List())
+	this.Data["pagetitle"]="产品列表"
+	//为了区分全搜索还是局部搜索要再次判断key
+	if key == "*"{
+		this.Data["key"]=""
+	}else{
+		this.Data["key"]=key
+	}
+	this.Data["pagecount"]=len(snum)
 	this.Data["pagelimit"]=limit
 	this.Data["page"]=page
+	this.Xsrf()
 	this.Layout="public/layout.html"
 	this.TplName="product/list.html"
 }

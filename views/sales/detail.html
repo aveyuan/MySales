@@ -29,7 +29,7 @@
                 <td>{{.SalesPdname}}</td>
                 <td>{{.Unitprice}}</td>
                 <td>{{.Number}}</td>
-                <td>{{.Number}}*{{.Unitprice}}</td>
+                <td>{{.Totail}}</td>
                 <td>{{.SalesPddate}}</td>
                 <td>{{.SalesPdShelflife}}</td>
                 <td> {{.SalesPdapnu}}</td>
@@ -37,7 +37,10 @@
                 <td>{{.SalesPdmanufacturer}}</td>
             </tr>
         {{end}}
+
     </tbody>
 </table>
+<h1>总价{{.sums}}</h1>
 {{end}}
+
 

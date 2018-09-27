@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"sales-project/models"
-	"fmt"
 )
 
 type ClientController struct {
@@ -42,7 +41,6 @@ func (this *ClientController)List()  {
 		page=1
 	}
 	key := this.GetString("key")
-	fmt.Println(key)
 	if key == ""{
 		key = "*"
 	}
