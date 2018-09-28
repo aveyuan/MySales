@@ -17,8 +17,9 @@ func (this *SalesController)Add()  {
 		idclient := &models.Client{Id:clientid}
 		//查询clinet
 		client := idclient.IdClinet()
+		datetime := this.GetString("datetime")
 		//先保存订单信息
-		sals := &models.Sales{Client:client,SalesPhone:client.Phone,SalesPostid:client.Postid,SalesAddress:client.Address,SalesData:this.GetDateTime(),Status:"成功"}
+		sals := &models.Sales{Client:client,SalesPhone:client.Phone,SalesPostid:client.Postid,SalesAddress:client.Address,SalesData:datetime,Status:"成功"}
 		if err := sals.Add();err != nil{
 			this.Ctx.WriteString("添加销售失败")
 		}else {
@@ -62,6 +63,7 @@ func (this *SalesController)Add()  {
 		products := product.List()
 		this.Xsrf()
 		this.Data["clients"]=clients
+		this.Data["now"]=this.GetDateTime()
 		this.Data["products"]=products
 		this.Data["pagetitle"]="新增销售"
 		this.Layout="public/layout.html"

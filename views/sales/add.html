@@ -11,6 +11,12 @@
             </select>
         </div>
     </div>
+    <div class="layui-form-item" pane="">
+        <label class="layui-form-label">购买时间</label>
+        <div class="layui-input-block">
+            <input name="datetime" class="layui-input" id="datetime" value="{{.now}}">
+        </div>
+    </div>
     <table class="layui-table">
         <thead>
             <td>产品</td>
@@ -102,7 +108,13 @@
     <button type="submit" class="layui-btn layui-btn-normal">新增销售</button>
 </form>
 <script>
-    layui.use('form',function () {
-        var form = layui.form;
-    })
+    layui.use(['form','laydate'],function () {
+        var form = layui.form,
+        laydate = layui.laydate;
+
+        laydate.render({
+            elem:"#datetime",
+            type:"datetime"
+        });
+    });
 </script>

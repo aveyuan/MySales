@@ -38,12 +38,12 @@ func (this *Sales)ListLimit(limit,page int,key string)([]*Sales,[]*Sales)  {
 	var num []*Sales
 	o := orm.NewOrm()
 	if key == "*"{
-		o.QueryTable(Sales{}).Limit(limit,(page-1)*limit).All(&saless)
+		o.QueryTable(Sales{}).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&saless)
 		o.QueryTable(Sales{}).All(&num)
 	}else {
 		con := orm.NewCondition()
 		con1 := con.Or("Id__icontains",key).Or("SalesPhone__icontains",key).Or("SalesAddress__icontains",key)
-		o.QueryTable(Sales{}).SetCond(con1).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&saless)
+		o.QueryTable(Sales{}).SetCond(con1).Limit(limit,(page-1)*limit).OrderBy("-Id").OrderBy("-Id").All(&saless)
 		o.QueryTable(Sales{}).SetCond(con1).OrderBy("-Id").All(&num)
 
 	}
