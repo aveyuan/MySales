@@ -34,9 +34,9 @@
                     {{end}}
                     </select>
                 </td>
-                <td><input type="text" name="unitprice" class="layui-input"></td>
-                <td><input type="text" name="number" class="layui-input"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input"></td>
+                <td><input type="text" name="unitprice" class="layui-input" id="unip1"></td>
+                <td><input type="text" name="number" class="layui-input" id="number1"></td>
+                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum1"></td>
             </tr>
             <tr>
                 <td>
@@ -47,9 +47,9 @@
                     {{end}}
                     </select>
                 </td>
-                <td><input type="text" name="unitprice" class="layui-input"></td>
-                <td><input type="text" name="number" class="layui-input"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input"></td>
+                <td><input type="text" name="unitprice" class="layui-input" id="unip2"></td>
+                <td><input type="text" name="number" class="layui-input" id="number2"></td>
+                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum2"></td>
             </tr>
             <tr>
                 <td>
@@ -60,9 +60,9 @@
                     {{end}}
                     </select>
                 </td>
-                <td><input type="text" name="unitprice" class="layui-input"></td>
-                <td><input type="text" name="number" class="layui-input"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input"></td>
+                <td><input type="text" name="unitprice" class="layui-input" id="unip3"></td>
+                <td><input type="text" name="number" class="layui-input" id="number3"></td>
+                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum3"></td>
             </tr>
             <tr>
                 <td>
@@ -73,9 +73,9 @@
                     {{end}}
                     </select>
                 </td>
-                <td><input type="text" name="unitprice" class="layui-input"></td>
-                <td><input type="text" name="number" class="layui-input"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input"></td>
+                <td><input type="text" name="unitprice" class="layui-input" id="unip4"></td>
+                <td><input type="text" name="number" class="layui-input" id="number4"></td>
+                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum4"></td>
             </tr>
             <tr>
                 <td>
@@ -86,9 +86,9 @@
                     {{end}}
                     </select>
                 </td>
-                <td><input type="text" name="unitprice" class="layui-input"></td>
-                <td><input type="text" name="number" class="layui-input"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input"></td>
+                <td><input type="text" name="unitprice" class="layui-input" id="unip5"></td>
+                <td><input type="text" name="number" class="layui-input" id="number5"></td>
+                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum5"></td>
             </tr>
             <tr>
                 <td>
@@ -99,22 +99,138 @@
                     {{end}}
                     </select>
                 </td>
-                <td><input type="text" name="unitprice" class="layui-input"></td>
-                <td><input type="text" name="number" class="layui-input"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input"></td>
+                <td><input type="text" name="unitprice" class="layui-input" id="unip6"></td>
+                <td><input type="text" name="number" class="layui-input" id="number6"></td>
+                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum6"></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="font-size: large">总计:<span id="result" style="color: red">Null</span></td>
             </tr>
         </tbody>
     </table>
+
     <button type="submit" class="layui-btn layui-btn-normal">新增销售</button>
 </form>
+
 <script>
-    layui.use(['form','laydate'],function () {
+    layui.use(['form','laydate','jquery'],function () {
         var form = layui.form,
+            $ = layui.jquery,
         laydate = layui.laydate;
 
         laydate.render({
             elem:"#datetime",
             type:"datetime"
         });
+
+        $('#number1').bind('input propertychange', function() {
+            var a = $(this).val()*$('#unip1').val();
+            $('#sum1').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+        $('#unip1').bind('input propertychange', function() {
+            var a = $(this).val()*$('#number1').val();
+            $('#sum1').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+
+        $('#number2').bind('input propertychange', function() {
+            var a = $(this).val()*$('#unip2').val();
+            $('#sum2').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+        $('#unip2').bind('input propertychange', function() {
+            var a = $(this).val()*$('#number2').val();
+            $('#sum2').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+
+        $('#number3').bind('input propertychange', function() {
+            var a = $(this).val()*$('#unip3').val();
+            $('#sum3').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+        $('#unip3').bind('input propertychange', function() {
+            var a = $(this).val()*$('#number3').val();
+            $('#sum3').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+
+        $('#number4').bind('input propertychange', function() {
+            var a = $(this).val()*$('#unip4').val();
+            $('#sum4').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+        $('#unip4').bind('input propertychange', function() {
+            var a = $(this).val()*$('#number4').val();
+            $('#sum4').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+
+        $('#number5').bind('input propertychange', function() {
+            var a = $(this).val()*$('#unip5').val();
+            $('#sum5').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+        $('#unip5').bind('input propertychange', function() {
+            var a = $(this).val()*$('#number5').val();
+            $('#sum5').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+
+        $('#number6').bind('input propertychange', function() {
+            var a = $(this).val()*$('#unip6').val();
+            $('#sum6').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+        $('#unip6').bind('input propertychange', function() {
+            var a = $(this).val()*$('#number6').val();
+            $('#sum6').val(a.toFixed(2));
+            var b = sums()
+            $('#result').html(b);
+        });
+
+        //求和函数
+        function sums() {
+            var a1 = parseFloat($("#sum1").val());
+                if (isNaN(a1)){
+                    a1=1
+                }
+            var a2 = parseFloat($("#sum2").val());
+                if (isNaN(a2)){
+                    a2=0
+                }
+            var a3 = parseFloat($("#sum3").val());
+            if (isNaN(a3)){
+                a3=0
+            }
+            var a4 = parseFloat($("#sum4").val());
+            if (isNaN(a4)){
+                a4=0
+            }
+            var a5 = parseFloat($("#sum5").val());
+            if (isNaN(a5)){
+                a5=0
+            }
+            var a6 = parseFloat($("#sum6").val());
+            if (isNaN(a6)){
+                a6=0
+            }
+
+            var sum = a1+a2+a3+a4+a5+a6;
+            return sum;
+        }
+
     });
 </script>

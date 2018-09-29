@@ -43,7 +43,7 @@ func (this *Client)ListLimit(limit,page int,key string)([]*Client,[]*Client)  {
 		o.QueryTable(Client{}).All(&num)
 	}else {
 		con := orm.NewCondition()
-		con1 := con.Or("Name",key).Or("Phone",key).Or("Address",key)
+		con1 := con.Or("Name__icontains",key).Or("Phone__icontains",key).Or("Address__icontains",key)
 		o.QueryTable(Client{}).SetCond(con1).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&clients)
 		o.QueryTable(Client{}).SetCond(con1).All(&num)
 
