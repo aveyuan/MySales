@@ -29,6 +29,7 @@
         <div class="layui-input-block">
 
             <select name="tag">
+                <option value=""></option>
             {{range .tag}}
                 <option value="{{.Id}}" >{{.Name}}</option>
             {{end}}

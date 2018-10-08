@@ -13,7 +13,7 @@ type Client struct {
 	Address string
 	Postid	string
 	Remarks string
-	Tag	*Tag `orm:"rel(one)"`
+	Tag	*Tag `orm:"rel(fk)"`
 	Createtime string
 	Updatetime string
 	Sales []*Sales `orm:"reverse(many)"`
@@ -70,7 +70,7 @@ func (this *Client)IdClinet()*Client {
 func (this *Client)Update()error  {
 	o :=orm.NewOrm()
 	//tag标签更新暂未实现
-	if _,err := o.Update(this,"Name","Phone","Address","Postid","Remarks","Updatetime");err != nil{
+	if _,err := o.Update(this,"Id","Name","Phone","Address","Postid","Remarks","Updatetime","Tag");err != nil{
 		return err
 	}
 	return nil

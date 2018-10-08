@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"sales-project/models"
-	"fmt"
 )
 
 type ClientController struct {
@@ -22,9 +21,9 @@ func (this *ClientController)Add()  {
 		client := &models.Client{Name:name,Tag:tag,Phone:phone,Address:address,Postid:postid,Remarks:remarks,Createtime:this.GetDateTime()}
 		if err := client.Add();err !=nil{
 			this.Ctx.WriteString("添加失败")
-		}else {
-			this.Redirect(this.URLFor(".List"),302)
 		}
+		this.Redirect(this.URLFor(".List"),302)
+
 	}else {
 		tag := &models.Tag{}
 		this.Xsrf()
@@ -96,14 +95,12 @@ func (this *ClientController)Update()  {
 			}
 		tagid,err := this.GetInt("tag")
 		tag := &models.Tag{Id:tagid}
-		tags := tag.Idtag()
-		fmt.Printf("\n%s\n",tags.Name)
 		name := this.GetString("name")
 		address := this.GetString("address")
 		postid := this.GetString("postid")
 		phone := this.GetString("phone")
 		remarks := this.GetString("remarks")
-		client := &models.Client{Id:id,Name:name,Address:address,Postid:postid,Tag:tags,Phone:phone,Remarks:remarks,Updatetime:this.GetDateTime()}
+		client := &models.Client{Id:id,Name:name,Address:address,Postid:postid,Tag:tag,Phone:phone,Remarks:remarks,Updatetime:this.GetDateTime()}
 		if err := client.Update();err!=nil{
 			this.Ctx.WriteString("更新失败")
 		}else{

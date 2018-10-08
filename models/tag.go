@@ -5,7 +5,7 @@ import "github.com/astaxie/beego/orm"
 type Tag struct {
 	Id int
 	Name string
-	Client *Client `orm:"reverse(one)"`
+	Client []*Client `orm:"reverse(many)"`
 }
 
 func (this *Tag)Add() error  {
