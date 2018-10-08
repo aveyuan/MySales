@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"sales-project/models"
-	"fmt"
 	"strconv"
 )
 
@@ -149,7 +148,6 @@ func (this *SalesController)Detail()  {
 	client := sales.Client.IdClinet()
 	row["id"]=sales.Id
 	row["clientname"]=client.Name
-	fmt.Println(client.Name)
 	row["address"]=sales.SalesAddress
 	row["postid"]=sales.SalesPostid
 	row["phone"]=sales.SalesPhone

@@ -1,0 +1,28 @@
+<div>
+    <table class="layui-table">
+        <thead>
+            <td>ID</td>
+            <td>标签名称</td>
+        </thead>
+        <tbody>
+            {{range .tag}}
+            <tr>
+                <td>{{.Id}}</td>
+                <td>{{.Name}}</td>
+                <td>
+                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a href="{{urlfor "TagController.Update"}}?id={{.Id}}">编辑</a></button>
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+</div>
+<div id="pages"></div>
+
+
+<script>
+    layui.use(['form'],function () {
+        var form = layui.form;
+
+    });
+</script>

@@ -13,6 +13,7 @@ type Client struct {
 	Address string
 	Postid	string
 	Remarks string
+	Tag	*Tag `orm:"rel(one)"`
 	Createtime string
 	Updatetime string
 	Sales []*Sales `orm:"reverse(many)"`
@@ -31,6 +32,15 @@ func (this *Client)List()[]*Client  {
 	var clients []*Client
 	o.QueryTable(Client{}).All(&clients)
 	return clients
+}
+
+func (this *Client)TagGet()*Client  {
+	o := orm.NewOrm()
+	o.Read(this)
+	if this.Tag != nil{
+		o.Read(this.Tag)
+	}
+	return this
 }
 
 //一共返回两个变量，一个是显示当前的，另外一个是没有分页的，可以很好的返回总页数
@@ -59,6 +69,7 @@ func (this *Client)IdClinet()*Client {
 
 func (this *Client)Update()error  {
 	o :=orm.NewOrm()
+	//tag标签更新暂未实现
 	if _,err := o.Update(this,"Name","Phone","Address","Postid","Remarks","Updatetime");err != nil{
 		return err
 	}

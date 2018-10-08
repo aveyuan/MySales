@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"sales-project/models"
+	"fmt"
 )
 
 type ClientController struct {
@@ -15,16 +16,20 @@ func (this *ClientController)Add()  {
 		phone := this.Ctx.Request.PostForm.Get("phone")
 		address := this.Ctx.Request.PostForm.Get("address")
 		postid := this.Ctx.Request.PostForm.Get("postid")
+		tagid,_ := this.GetInt("tag")
+		tag := &models.Tag{Id:tagid}
 		remarks := this.Ctx.Request.PostForm.Get("remarks")
-		client := &models.Client{Name:name,Phone:phone,Address:address,Postid:postid,Remarks:remarks,Createtime:this.GetDateTime()}
+		client := &models.Client{Name:name,Tag:tag,Phone:phone,Address:address,Postid:postid,Remarks:remarks,Createtime:this.GetDateTime()}
 		if err := client.Add();err !=nil{
 			this.Ctx.WriteString("添加失败")
 		}else {
 			this.Redirect(this.URLFor(".List"),302)
 		}
 	}else {
+		tag := &models.Tag{}
 		this.Xsrf()
 		this.Data["pagetitle"]="新增客户"
+		this.Data["tag"]=tag.List()
 		this.Layout="public/layout.html"
 		this.TplName="client/add.html"
 	}
@@ -51,7 +56,21 @@ func (this *ClientController)List()  {
 	}
 	client := &models.Client{}
 	clients,snum := client.ListLimit(limit,page,key)
-	this.Data["clients"]=clients
+	//有没有更好的方式，在不重组数据的情况下，直接通过orm获得所需要的值？这点太不方便了。
+	list := make([]map[string]interface{},len(clients))
+	for k,v := range clients{
+		row := make(map[string]interface{})
+		tag := v.Tag.Idtag()
+		row["tag"]=tag
+		row["id"]=v.Id
+		row["name"]=v.Name
+		row["phone"]=v.Phone
+		row["address"]=v.Address
+		row["postid"]=v.Postid
+		row["remarks"]=v.Remarks
+		list[k]=row
+	}
+	this.Data["clients"]=list
 	this.Data["pagetitle"]="用户列表"
 	//为了区分全搜索还是局部搜索要再次判断key
 	if key == "*"{
@@ -75,12 +94,16 @@ func (this *ClientController)Update()  {
 				this.Ctx.WriteString("获ID有误")
 				this.StopRun()
 			}
+		tagid,err := this.GetInt("tag")
+		tag := &models.Tag{Id:tagid}
+		tags := tag.Idtag()
+		fmt.Printf("\n%s\n",tags.Name)
 		name := this.GetString("name")
 		address := this.GetString("address")
 		postid := this.GetString("postid")
 		phone := this.GetString("phone")
 		remarks := this.GetString("remarks")
-		client := &models.Client{Id:id,Name:name,Address:address,Postid:postid,Phone:phone,Remarks:remarks,Updatetime:this.GetDateTime()}
+		client := &models.Client{Id:id,Name:name,Address:address,Postid:postid,Tag:tags,Phone:phone,Remarks:remarks,Updatetime:this.GetDateTime()}
 		if err := client.Update();err!=nil{
 			this.Ctx.WriteString("更新失败")
 		}else{
@@ -92,8 +115,15 @@ func (this *ClientController)Update()  {
 			this.Ctx.WriteString("数据有误")
 		}
 		client := &models.Client{Id:id}
+		clients := client.IdClinet()
+		tag := client.TagGet()
+		tag1 := &models.Tag{}
+		tags := tag1.List()
 		this.Xsrf()
-		this.Data["client"]=client.IdClinet()
+		this.Data["client"]=clients
+		this.Data["tag"]=tag
+		this.Data["tags"]=tags
+
 		this.Data["pagetitle"]="修改用户信息页面"
 		this.Layout="public/layout.html"
 		this.TplName="client/update.html"

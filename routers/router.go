@@ -25,4 +25,8 @@ func init() {
     beego.Router("/updatepass",&controllers.LoginController{},"*:UpdatePass")
     beego.Router("/updatenike",&controllers.LoginController{},"*:UpdateNike")
     beego.Router("/logout",&controllers.LoginController{},"*:Logout")
+
+   beego.Router("/tag/add",&controllers.TagController{},"*:Add")
+   beego.Router("/tag/list",&controllers.TagController{},"*:List")
+   beego.Router("/tag/update",&controllers.TagController{},"*:Update")
 }

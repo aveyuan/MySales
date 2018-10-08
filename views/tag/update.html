@@ -1,0 +1,11 @@
+<form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
+{{ .xsrfdata }}
+    <input type="hidden" name="id" value="{{.tag.Id}}">
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">标签名称</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="name" value="{{.tag.Name}}">
+        </div>
+    </div>
+    <button type="submit" class="layui-btn layui-btn-normal">更新标签信息</button>
+</form>

@@ -18,20 +18,22 @@
             <td>电话</td>
             <td>地址</td>
             <td>邮编</td>
+            <td>标签</td>
             <td>备注</td>
             <td>操作</td>
         </thead>
         <tbody>
             {{range .clients}}
             <tr>
-                <td>{{.Id}}</td>
-                <td>{{.Name}}</td>
-                <td>{{.Phone}}</td>
-                <td>{{.Address}}</td>
-                <td>{{.Postid}}</td>
-                <td>{{.Remarks}}</td>
+                <td>{{.id}}</td>
+                <td>{{.name}}</td>
+                <td>{{.phone}}</td>
+                <td>{{.address}}</td>
+                <td>{{.postid}}</td>
+                <td>{{.tag.Name}}</td>
+                <td>{{.remarks}}</td>
                 <td>
-                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a href="{{urlfor "ClientController.Update"}}?id={{.Id}}">编辑</a></button>
+                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a href="{{urlfor "ClientController.Update"}}?id={{.id}}">编辑</a></button>
                 </td>
             </tr>
             {{end}}

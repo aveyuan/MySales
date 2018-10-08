@@ -24,6 +24,17 @@
             <input type="text" class="layui-input" name="postid">
         </div>
     </div>
+    <div class="layui-form-item" pane="">
+        <label class="layui-form-label">客户标签</label>
+        <div class="layui-input-block">
+
+            <select name="tag">
+            {{range .tag}}
+                <option value="{{.Id}}" >{{.Name}}</option>
+            {{end}}
+            </select>
+        </div>
+    </div>
     <div class="layui-form-item" pane>
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
@@ -32,3 +43,10 @@
     </div>
     <button type="submit" class="layui-btn layui-btn-normal">添加客户</button>
 </form>
+
+<script>
+    layui.use(['form'],function () {
+        var form = layui.form;
+
+    });
+</script>
