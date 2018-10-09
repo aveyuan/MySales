@@ -59,8 +59,14 @@ func (this *ClientController)List()  {
 	list := make([]map[string]interface{},len(clients))
 	for k,v := range clients{
 		row := make(map[string]interface{})
-		tag := v.Tag.Idtag()
-		row["tag"]=tag
+		//考虑到版本升级的问题，加以判断
+		if v.Tag==nil || v.Tag.Id==0{
+			tag := &models.Tag{Name:""}
+			row["tag"]=tag
+		}else {
+			tag := v.Tag.Idtag()
+			row["tag"]=tag
+		}
 		row["id"]=v.Id
 		row["name"]=v.Name
 		row["phone"]=v.Phone
@@ -113,12 +119,20 @@ func (this *ClientController)Update()  {
 		}
 		client := &models.Client{Id:id}
 		clients := client.IdClinet()
-		tag := client.TagGet()
+		//判断是会否有tag再处理
+		if client.Tag !=nil{
+			tag := client.TagGet()
+			this.Data["tag"]=tag
+		}else {
+			tag := &models.Tag{Id:0,Name:""}
+			cs := &models.Client{Tag:tag}
+			this.Data["tag"]=cs
+		}
+
 		tag1 := &models.Tag{}
 		tags := tag1.List()
 		this.Xsrf()
 		this.Data["client"]=clients
-		this.Data["tag"]=tag
 		this.Data["tags"]=tags
 
 		this.Data["pagetitle"]="修改用户信息页面"

@@ -13,10 +13,11 @@ type Client struct {
 	Address string
 	Postid	string
 	Remarks string
-	Tag	*Tag `orm:"rel(fk)"`
+	Tag	*Tag `orm:"null;rel(fk)"`
 	Createtime string
 	Updatetime string
 	Sales []*Sales `orm:"reverse(many)"`
+
 }
 
 func (this *Client)Add()error  {

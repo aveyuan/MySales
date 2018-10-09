@@ -10,6 +10,7 @@ func (this *TagController)List()  {
 	this.IsLogin()
 	tag := &models.Tag{}
 	this.Data["tag"]=tag.List()
+	this.Data["page"]="标签列表"
 	this.Layout="public/layout.html"
 	this.TplName="tag/list.html"
 }
