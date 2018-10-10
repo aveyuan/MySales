@@ -1,6 +1,8 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+)
 
 type Salespd struct {
 	Id int
@@ -31,4 +33,11 @@ func (this *Salespd)IdSales(id int)[]*Salespd {
 	var salespds []*Salespd
 	o.QueryTable(Salespd{}).Filter("Sales",id).All(&salespds)
 	return salespds
+}
+
+func (this *Salespd)List() []*Salespd {
+	o := orm.NewOrm()
+	var salespd []*Salespd
+	o.QueryTable(Salespd{}).All(&salespd)
+	return salespd
 }
