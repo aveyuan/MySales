@@ -6,11 +6,11 @@
 ### 首页
 ![avatar](https://github.com/aveyuan/MySales/blob/master/img/home.JPG)
 ### 客户页
-![avatar](https://github.com/aveyuan/MySales/blob/master/img/client-01.jpg)
-![avatar](https://github.com/aveyuan/MySales/blob/master/img/client-02.jpg)
+![avatar](https://github.com/aveyuan/MySales/blob/master/img/client-01.JPG)
+![avatar](https://github.com/aveyuan/MySales/blob/master/img/client-02.JPG)
 ### 产品页
-![avatar](https://github.com/aveyuan/MySales/blob/master/img/produc-01.jpg)
-![avatar](https://github.com/aveyuan/MySales/blob/master/img/produc-02.jpg)
+![avatar](https://github.com/aveyuan/MySales/blob/master/img/produc-01.JPG)
+![avatar](https://github.com/aveyuan/MySales/blob/master/img/produc-02.JPG)
 ### 销售页
-![avatar](https://github.com/aveyuan/MySales/blob/master/img/sales-01.jpg)
-![avatar](https://github.com/aveyuan/MySales/blob/master/img/sales-02.jpg)
+![avatar](https://github.com/aveyuan/MySales/blob/master/img/sales-01.JPG)
+![avatar](https://github.com/aveyuan/MySales/blob/master/img/sales-02.JPG)
