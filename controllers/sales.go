@@ -13,12 +13,13 @@ func (this *SalesController)Add()  {
 	this.IsLogin()
 	if this.IsPost(){
 		clientid,_ := this.GetInt("client")
+		remarks := this.GetString("remarks")
 		idclient := &models.Client{Id:clientid}
 		//查询clinet
 		client := idclient.IdClinet()
 		datetime := this.GetString("datetime")
 		//先保存订单信息
-		sals := &models.Sales{Client:client,SalesPhone:client.Phone,SalesPostid:client.Postid,SalesAddress:client.Address,SalesData:datetime,Status:"成功"}
+		sals := &models.Sales{Client:client,SalesPhone:client.Phone,SalesPostid:client.Postid,SalesAddress:client.Address,SalesData:datetime,Status:"成功",Remarks:remarks}
 		if err := sals.Add();err != nil{
 			this.Ctx.WriteString("添加销售失败")
 		}else {
@@ -152,6 +153,7 @@ func (this *SalesController)Detail()  {
 	row["postid"]=sales.SalesPostid
 	row["phone"]=sales.SalesPhone
 	row["date"]=sales.SalesData
+	row["remarks"]=sales.Remarks
 	salespd := new(models.Salespd)
 	row["salespd"]=salespd.IdSales(salesid)
 	var a float32

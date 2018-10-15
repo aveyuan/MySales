@@ -40,7 +40,12 @@
 
     </tbody>
 </table>
-<h1>总价{{.sums}}</h1>
+<table class="layui-table">
+    <tr>
+        <td><strong>备注:{{.remarks}}</strong></td>
+        <td style="color: red;font-size: larger">总价:{{.sums}}</td>
+    </tr>
+</table>
 {{end}}
 
 

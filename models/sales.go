@@ -16,6 +16,7 @@ type Sales struct {
 	Salespd		[]*Salespd `orm:"reverse(many)"`
 	SalesData	string
 	Status 		string
+	Remarks		string
 }
 
 func (this *Sales)Add()error  {
