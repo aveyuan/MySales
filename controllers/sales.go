@@ -113,7 +113,8 @@ func (this *SalesController)List()  {
 		for _,v := range salespd.IdSales(v.Id){
 			a+=v.Totail
 		}
-		row["sums"]=a
+
+		row["sums"]=strconv.FormatFloat(float64(a),'f',2,32)
 
 		list[k]=row
 	}
@@ -160,7 +161,7 @@ func (this *SalesController)Detail()  {
 	for _,v := range salespd.IdSales(salesid){
 		a+=v.Totail
 	}
-	row["sums"]=a
+	row["sums"]=strconv.FormatFloat(float64(a),'f',2,32)
 
 	list = append(list, row)
 	this.Data["pagetitle"]="订单详情"
