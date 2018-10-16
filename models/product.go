@@ -44,7 +44,7 @@ func (this *Product)ListLimit(limit,page int,key string)([]*Product,[]*Product) 
 		o.QueryTable(Product{}).All(&num)
 	}else {
 		con := orm.NewCondition()
-		con1 := con.Or("Name",key).Or("Code__icontains",key).Or("Approvalnumber__icontains",key).Or("Manufacturer__icontains",key)
+		con1 := con.Or("Name__icontains",key).Or("Code__icontains",key).Or("Approvalnumber__icontains",key).Or("Manufacturer__icontains",key)
 		o.QueryTable(Product{}).SetCond(con1).Limit(limit,(page-1)*limit).OrderBy("-Id").All(&products)
 		o.QueryTable(Product{}).SetCond(con1).All(&num)
 	}
