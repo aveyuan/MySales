@@ -1,6 +1,9 @@
 package controllers
 
-import "sales-project/models"
+import (
+	"sales-project/models"
+	"strconv"
+)
 
 type MainController struct {
 	BaseController
@@ -28,7 +31,8 @@ func (this *MainController) Get() {
 	for _,v := range salespds{
 		sum+=v.Totail
 	}
-	this.Data["sum"]=sum
+	sums := strconv.FormatFloat(float64(sum),'f',2,32)
+	this.Data["sum"]=sums
 	this.Layout="public/layout.html"
 	this.TplName = "index.html"
 
