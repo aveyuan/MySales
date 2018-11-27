@@ -7,7 +7,6 @@ type TagController struct {
 }
 
 func (this *TagController)List()  {
-	this.IsLogin()
 	tag := &models.Tag{}
 	this.Data["tag"]=tag.List()
 	this.Data["page"]="标签列表"
@@ -16,7 +15,6 @@ func (this *TagController)List()  {
 }
 
 func (this *TagController)Add()  {
-	this.IsLogin()
 	if this.IsPost(){
 		tagname := this.GetString("name")
 		tag := &models.Tag{Name:tagname}
@@ -33,7 +31,6 @@ func (this *TagController)Add()  {
 }
 
 func (this *TagController)Update()  {
-	this.IsLogin()
 	if this.IsPost(){
 		id,err := this.GetInt("id")
 		if err!=nil{

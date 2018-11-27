@@ -9,7 +9,6 @@ type ClientController struct {
 }
 
 func (this *ClientController)Add()  {
-	this.IsLogin()
 	if this.IsPost(){
 		name := this.Ctx.Request.PostForm.Get("name")
 		phone := this.Ctx.Request.PostForm.Get("phone")
@@ -35,7 +34,6 @@ func (this *ClientController)Add()  {
 }
 
 func (this *ClientController)List()  {
-	this.IsLogin()
 	limit,err := this.GetInt("limit")
 	if err !=nil{
 		limit=10
@@ -92,7 +90,6 @@ func (this *ClientController)List()  {
 }
 
 func (this *ClientController)Update()  {
-	this.IsLogin()
 	if this.IsPost(){
 		id,err := this.GetInt("id")
 			if err!=nil{

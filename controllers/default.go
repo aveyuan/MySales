@@ -10,7 +10,6 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
-	this.IsLogin()
 	//作为默认首页，显示客户数量，产品数量，销售笔数
 	//客户数量获取
 	client := &models.Client{}

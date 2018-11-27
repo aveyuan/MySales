@@ -43,4 +43,10 @@ func Init()  {
 		orm.Debug = true
 	}
 	beego.Info("数据库初始化完成.")
+
+	if len(os.Args)>=2 && os.Args[1]=="install"{
+		orm.RunSyncdb("default",false,true)
+		user := new(User)
+		user.InstallUser()
+	}
 }

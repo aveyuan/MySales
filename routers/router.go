@@ -3,6 +3,7 @@ package routers
 import (
 	"sales-project/controllers"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 )
 
 func init() {
@@ -29,4 +30,14 @@ func init() {
    beego.Router("/tag/add",&controllers.TagController{},"*:Add")
    beego.Router("/tag/list",&controllers.TagController{},"*:List")
    beego.Router("/tag/update",&controllers.TagController{},"*:Update")
+
+
+    //路由过滤
+    var FilterUser = func(ctx *context.Context) {
+        _, ok := ctx.Input.Session("username").(string)
+        if !ok && ctx.Request.RequestURI != "/login" {
+            ctx.Redirect(302, "/login")
+        }
+    }
+    beego.InsertFilter("/*",beego.BeforeRouter,FilterUser)
 }

@@ -30,7 +30,6 @@ func (this *LoginController)Login()  {
 }
 
 func (this *LoginController)Reg()  {
-	this.IsLogin()
 	if this.IsPost(){
 		user := this.GetString("username")
 		pass1 := this.GetString("password1")
@@ -54,7 +53,6 @@ func (this *LoginController)Reg()  {
 }
 
 func (this *LoginController)UpdatePass()  {
-	this.IsLogin()
 	if this.IsPost(){
 		userid,err := this.GetInt("id")
 		if err !=nil{
@@ -84,7 +82,6 @@ func (this *LoginController)UpdatePass()  {
 }
 
 func (this *LoginController)UpdateNike()  {
-	this.IsLogin()
 	if this.IsPost(){
 		userid,err := this.GetInt("id")
 		if err !=nil{
@@ -108,7 +105,6 @@ func (this *LoginController)UpdateNike()  {
 }
 
 func (this *LoginController)Logout()  {
-	this.IsLogin()
 	this.DestroySession()
 	this.Redirect(beego.URLFor("LoginController.Login"),302)
 }
