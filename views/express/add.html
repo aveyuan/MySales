@@ -1,0 +1,31 @@
+<form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
+{{ .xsrfdata }}
+    <h1>为订单:{{.salesid}}添加快递</h1>
+    <input type="hidden" name="salesid" value={{.salesid}}>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">快递公司</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="excmp">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">快递单号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="exnum">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <textarea name="remark" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <button type="submit" class="layui-btn layui-btn-normal">添加快递</button>
+</form>
+
+<script>
+    layui.use(['form'],function () {
+        var form = layui.form;
+
+    });
+</script>

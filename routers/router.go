@@ -31,6 +31,7 @@ func init() {
    beego.Router("/tag/list",&controllers.TagController{},"*:List")
    beego.Router("/tag/update",&controllers.TagController{},"*:Update")
 
+   beego.Router("/express/add",&controllers.ExpressController{},"*:Add")
 
     //路由过滤
     var FilterUser = func(ctx *context.Context) {

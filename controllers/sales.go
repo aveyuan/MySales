@@ -141,6 +141,8 @@ func (this *SalesController)Detail()  {
 		this.Ctx.WriteString("数据有误")
 		this.StopRun()
 	}
+	//快递数据
+
 	//重组数据
 	list := make([]interface{},0)
 	row := make(map[string]interface{})
