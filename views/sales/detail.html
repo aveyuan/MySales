@@ -46,7 +46,12 @@
         <td style="color: red;font-size: larger">总价:{{.sums}}</td>
     </tr>
 </table>
-<a href="{{urlfor "ExpressController.Add"}}?id={{.id}}">添加快递</a>
 {{end}}
-
-
+<table class="layui-table">
+    <tr>
+        <td>快递公司:{{.e.Excmp}}</td>
+        <td>快递单号:{{.e.Exnum}}</td>
+        <td>备注:{{.e.Remark}}</td>
+    </tr>
+</table>
+<a href="{{urlfor "ExpressController.Add"}}?id={{.salesid}}">添加快递</a>

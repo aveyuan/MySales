@@ -3,6 +3,7 @@ package controllers
 import (
 	"sales-project/models"
 	"strconv"
+	"fmt"
 )
 
 type SalesController struct {
@@ -142,6 +143,9 @@ func (this *SalesController)Detail()  {
 		this.StopRun()
 	}
 	//快递数据
+	ex := &models.Express{}
+	e := ex.ExSales(salesid)
+	fmt.Printf("快递公司%s",e.Excmp)
 
 	//重组数据
 	list := make([]interface{},0)
@@ -164,6 +168,8 @@ func (this *SalesController)Detail()  {
 
 	list = append(list, row)
 	this.Data["pagetitle"]="订单详情"
+	this.Data["e"]=e
+	this.Data["salesid"]=salesid
 	this.Data["detail"]=list
 	this.Layout="public/layout.html"
 	this.TplName="sales/detail.html"

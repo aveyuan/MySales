@@ -1,6 +1,9 @@
 package controllers
 
-import "sales-project/models"
+import (
+	"sales-project/models"
+	"strconv"
+)
 
 type ExpressController struct {
 	BaseController
@@ -17,7 +20,7 @@ func (this *ExpressController)Add()  {
 		if err:= express.Add();err !=nil{
 			this.Ctx.WriteString("添加快递单号失败")
 		}
-		this.Redirect(this.URLFor("SalesController.List"),302)
+		this.Redirect(this.URLFor("SalesController.Detail")+"?id="+strconv.Itoa(salesid),302)
 
 	}else {
 		salesid,_ := this.GetInt("id")

@@ -67,12 +67,3 @@ func (this *Sales)Cancel()error  {
 	}
 	return nil
 }
-
-func (this *Sales)GetExp()(*Express,error)  {
-	var exp Express
-	o := orm.NewOrm()
-	if err := o.QueryTable(&Express{}).Filter("Express",this.Id).One(&exp);err !=nil{
-		return nil,err
-	}
-	return &exp,nil
-}

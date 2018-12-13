@@ -1,6 +1,8 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+)
 
 type Express struct {
 	Id int
@@ -16,4 +18,11 @@ func (this *Express)Add()error  {
 		return err
 	}
 	return nil
+}
+
+func (this *Express)ExSales(id int)*Express  {
+	o := orm.NewOrm()
+	var ex Express
+	o.QueryTable(Express{}).Filter("Sales",id).All(&ex)
+	return &ex
 }
