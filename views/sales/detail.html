@@ -47,6 +47,7 @@
     </tr>
 </table>
 {{end}}
+<div id="kdtable">
 <table class="layui-table">
     <tr>
         <td>快递公司:{{.e.Excmp}}</td>
@@ -54,4 +55,20 @@
         <td>备注:{{.e.Remark}}</td>
     </tr>
 </table>
-<a href="{{urlfor "ExpressController.Add"}}?id={{.salesid}}">添加快递</a>
+</div>
+
+<div id="tjkd">
+    <button class="layui-btn" onclick="location.href='{{urlfor "ExpressController.Add"}}?id={{.salesid}}'">添加快递</button>
+</div>
+
+<script>
+    layui.use('jquery',function () {
+        var $ = layui.jquery;
+        var kdgs = {{.e.Excmp}};
+        if (kdgs){
+            $("#tjkd").hide();
+        }else {
+            $("#kdtable").hide();
+        }
+    })
+</script>
