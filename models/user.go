@@ -8,14 +8,16 @@ import (
 )
 
 //用户表
+//这里是用户登录的表单
 
 type User struct {
 	Id int
-	Username string
-	Password string
-	Nikename string
+	Username string //用户名
+	Password string //密码
+	Nikename string //昵称
 }
 
+//登录
 func (this *User)Login()error  {
 	o := orm.NewOrm()
 	if err :=o.Read(this,"Username","Password");err !=nil{
@@ -24,6 +26,7 @@ func (this *User)Login()error  {
 	return nil
 }
 
+//添加用户 暂时没写页面的的实现，只能用admin
 func (this *User)Add()error  {
 	o := orm.NewOrm()
 	if _,err := o.Insert(this);err != nil{
@@ -32,6 +35,7 @@ func (this *User)Add()error  {
 	return nil
 }
 
+//修改密码
 func (this *User)UpdatePassword()error  {
 	o := orm.NewOrm()
 	if _,err := o.Update(this,"Password","Nikename");err !=nil{
@@ -40,6 +44,7 @@ func (this *User)UpdatePassword()error  {
 	return nil
 }
 
+//更改昵称
 func (this *User)UpdateNikename()error  {
 	o := orm.NewOrm()
 	if _,err := o.Update(this,"Nikename");err !=nil{
@@ -48,6 +53,7 @@ func (this *User)UpdateNikename()error  {
 	return nil
 }
 
+//用户列表
 func (this *User)List()*User  {
 	o := orm.NewOrm()
 	user := User{}
@@ -56,7 +62,7 @@ func (this *User)List()*User  {
 	return &user
 }
 
-
+//用户初始化
 func (this *User)InstallUser()  {
 	o := orm.NewOrm()
 	pass := libs.Passwords("123456")

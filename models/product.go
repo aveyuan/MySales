@@ -5,7 +5,6 @@ import (
 )
 
 //产品基本数据设定
-
 type Product struct {
 	Id              int
 	Name            string
@@ -20,6 +19,7 @@ type Product struct {
 	Salespd			[]*Salespd `orm:"reverse(many)"`
 }
 
+//添加产品
 func (this *Product)Add()error  {
 	o := orm.NewOrm()
 	if _,err := o.Insert(this);err!=nil{
@@ -28,6 +28,7 @@ func (this *Product)Add()error  {
 	return nil
 }
 
+//产品列表
 func (this *Product)List()[]*Product  {
 	var products []*Product
 	o := orm.NewOrm()
@@ -35,6 +36,7 @@ func (this *Product)List()[]*Product  {
 	return products
 }
 
+//产品查询列表
 func (this *Product)ListLimit(limit,page int,key string)([]*Product,[]*Product)  {
 	o := orm.NewOrm()
 	var products []*Product
@@ -51,12 +53,14 @@ func (this *Product)ListLimit(limit,page int,key string)([]*Product,[]*Product) 
 	return products,num
 }
 
+//通过id查询到产品
 func (this *Product)IdProduct()*Product {
 	o := orm.NewOrm()
 	o.Read(this)
 	return this
 }
 
+//产品更新
 func (this *Product)Update()error  {
 	o := orm.NewOrm()
 	if _,err := o.Update(this,"Name","Code","Approvalnumber","ProductionDate","Productionbatch","ShelfLife","Manufacturer","Updatetime");err!=nil{

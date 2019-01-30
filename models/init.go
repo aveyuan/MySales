@@ -10,6 +10,7 @@ import (
 	"os"
 )
 
+//系统初始化内容
 func Init()  {
 	beego.Info("正在初始化数据库配置.")
 	adapter := beego.AppConfig.String("db_adapter")

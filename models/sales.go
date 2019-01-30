@@ -5,23 +5,23 @@ import (
 )
 
 //销售数据库
-/*
-用于存放销售产品的快照,实现打印,查询
- */
+//这个数据库与salespd对应两者为一对多关系，即:一个销售单里有多个产品销售内容
+//这里的电话，地址又重新保持了一遍是因为客户可能会换地址的情况，本系统没有做地址薄
 
 type Sales struct {
 	Id         int
-	Client     *Client `orm:"rel(fk)"`
-	SalesPhone string
-	SalesAddress string
-	SalesPostid	string
-	Salespd		[]*Salespd `orm:"reverse(many)"`
-	SalesData	string
-	Status 		string
-	Remarks		string
-	Express *Express `orm:"reverse(one)"`
+	Client     *Client `orm:"rel(fk)"` //客户
+	SalesPhone string //电话
+	SalesAddress string //地址
+	SalesPostid	string //邮编
+	Salespd		[]*Salespd `orm:"reverse(many)"` //产品
+	SalesData	string //销售时间
+	Status 		string //状态
+	Remarks		string //备注
+	Express *Express `orm:"reverse(one)"` //快递
 }
 
+//添加
 func (this *Sales)Add()error  {
 	o := orm.NewOrm()
 	if _,err := o.Insert(this);err != nil{
@@ -30,6 +30,7 @@ func (this *Sales)Add()error  {
 	return nil
 }
 
+//列表
 func (this *Sales)List()[]*Sales  {
 	var saless []*Sales
 	o := orm.NewOrm()
@@ -37,6 +38,7 @@ func (this *Sales)List()[]*Sales  {
 	return saless
 }
 
+//查询
 func (this *Sales)ListLimit(limit,page int,key string)([]*Sales,[]*Sales)  {
 	var saless []*Sales
 	var num []*Sales
@@ -61,6 +63,7 @@ func (this *Sales)ListLimit(limit,page int,key string)([]*Sales,[]*Sales)  {
 	return saless,num
 }
 
+//获取
 func (this *Sales)GetSales()(*Sales,error)  {
 	o := orm.NewOrm()
 	if err := o.Read(this);err !=nil{
@@ -69,6 +72,7 @@ func (this *Sales)GetSales()(*Sales,error)  {
 	return this,nil
 }
 
+//状态
 func (this *Sales)Cancel()error  {
 	o := orm.NewOrm()
 	if _,err := o.Update(this,"Status");err !=nil{

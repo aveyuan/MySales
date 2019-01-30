@@ -58,11 +58,13 @@
 </div>
 
 <div id="tjkd">
-    <button class="layui-btn" onclick="location.href='{{urlfor "ExpressController.Add"}}?id={{.salesid}}'">添加快递</button>
+    {{/*<button class="layui-btn" onclick="location.href='{{urlfor "ExpressController.Add"}}?id={{.salesid}}'">添加快递</button>*/}}
+    <button id="kd" class="layui-btn">添加快递</button>
 </div>
 
 <script>
-    layui.use('jquery',function () {
+    layui.use(['jquery','layer'],function () {
+        var layer = layui.layer;
         var $ = layui.jquery;
         var kdgs = {{.e.Excmp}};
         if (kdgs){
@@ -70,5 +72,17 @@
         }else {
             $("#kdtable").hide();
         }
+
+        $("#kd").click(function () {
+            layer.open({
+                type: 2,
+                content: "{{urlfor "ExpressController.Add"}}?id={{.salesid}}", //这里content是一个普通的String
+                title: ["添加快递"],
+                area: ['500px', '350px'],
+                cancel: function(index, layero){
+                        location.reload();
+                }
+            });
+        })
     })
 </script>

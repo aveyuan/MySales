@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"sales-project/models"
-	"strconv"
 )
 
 type ExpressController struct {
@@ -20,13 +19,12 @@ func (this *ExpressController)Add()  {
 		if err:= express.Add();err !=nil{
 			this.Ctx.WriteString("添加快递单号失败")
 		}
-		this.Redirect(this.URLFor("SalesController.Detail")+"?id="+strconv.Itoa(salesid),302)
+			this.Ctx.WriteString("快递添加成功,请关闭窗口")
 
 	}else {
 		salesid,_ := this.GetInt("id")
 		this.Data["salesid"]=salesid
 		this.Xsrf()
-		this.Layout="public/layout.html"
 		this.TplName="express/add.html"
 	}
 }
