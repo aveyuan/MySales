@@ -57,8 +57,8 @@ func (this *Sales)ListLimit(limit,page int,key string)([]*Sales,[]*Sales)  {
 	}
 	//如果没有查询到，再尝试是否是通过姓名来查询的，这里需要反向查询
 	if len(num)==0{
-		o.QueryTable(Sales{}).Filter("Client__Name", key).RelatedSel().Limit(limit,(page-1)*limit).OrderBy("-Id").OrderBy("-Id").All(&saless)
-		o.QueryTable(Sales{}).Filter("Client__Name", key).OrderBy("-Id").All(&num)
+		o.QueryTable(Sales{}).Filter("Client__Name__icontains", key).RelatedSel().Limit(limit,(page-1)*limit).OrderBy("-Id").OrderBy("-Id").All(&saless)
+		o.QueryTable(Sales{}).Filter("Client__Name__icontains", key).OrderBy("-Id").All(&num)
 	}
 	return saless,num
 }
