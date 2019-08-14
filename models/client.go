@@ -9,11 +9,11 @@ import (
 
 type Client struct {
 	Id      int
-	Name 	string //姓名
+	Name 	string //公司名称
 	Phone   string //电话
 	Address string //地址
 	Postid	string //邮编
-	Remarks string //憋住
+	Remarks string //备注
 	Tag	*Tag `orm:"null;rel(fk)"` //标签
 	Createtime string //创建时间
 	Updatetime string //更新时间
