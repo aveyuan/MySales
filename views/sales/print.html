@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.pagetitle}}</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="/static/layui/layui.js"></script>
+</head>
+<body>
+<div class="layui-layout">
+    <div class="layui-container">
+        <div class="layui-row">
+            {{range .detail}}
+                <table border="0" class="layui-table">
+                    <tr bgcolor="white">
+                        <td align="left" colspan="2">公司地址:xx</td>
+                        <td align="right">一联存根2联财务</td>
+                    </tr>
+                    <tr>
+                        <td align="left" colspan="2">电话:xxx</td>
+                        <td align="right">No{{.id}}</td>
+                    </tr>
+                    <tr>
+                        <td align="left" colspan="2">购货单位/个人:{{.clientname}}</td>
+                        <td align="right">日期：{{.date}}</td>
+                    </tr>
+                    <tr>
+                        <td align="left" colspan="2">收货地址:{{.address}}</td>
+                        <td align="right">发货人：xxx</td>
+                    </tr>
+                    <tr>
+                        <td align="left">生产企业:{{.SalesPdmanufacturer}}</td>
+                        <td align="left">批准文号:{{.SalesPdbatch}}</td>
+                        <td align="right">批号：{{.SalesPdapnu}}</td>
+                    </tr>
+
+                </table>
+                <table class="layui-table">
+                    <thead>
+                    <td>产品名称</td>
+                    <td>销售单价</td>
+                    <td>销售数量</td>
+                    <td>合计</td>
+                    <td>生产日期</td>
+                    <td>保质期</td>
+                    <td>生产批号</td>
+                    <td>批准文号</td>
+                    <td>生产厂商</td>
+                    </thead>
+                    <tbody>
+                    {{range .salespd}}
+                        <tr>
+                            <td>{{.SalesPdname}}</td>
+                            <td>{{.Unitprice}}</td>
+                            <td>{{.Number}}</td>
+                            <td>{{.Totail}}</td>
+                            <td>{{.SalesPddate}}</td>
+                            <td>{{.SalesPdShelflife}}</td>
+                            <td> {{.SalesPdapnu}}</td>
+                            <td>{{.SalesPdbatch}}</td>
+                            <td>{{.SalesPdmanufacturer}}</td>
+                        </tr>
+                    {{end}}
+
+                    </tbody>
+                </table>
+                <table class="layui-table">
+                    <tr>
+                        <td><strong>备注:{{.remarks}}</strong></td>
+                        <td style="color: red;font-size: larger">总价:{{.sums}}</td>
+                    </tr>
+                </table>
+            {{end}}
+        </div>
+    </div>
+</div>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
+
+

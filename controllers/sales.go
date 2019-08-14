@@ -174,6 +174,48 @@ func (this *SalesController)Detail()  {
 	this.TplName="sales/detail.html"
 }
 
+func (this *SalesController)Print()  {
+	//获取传送过来的slaesid并取得sales
+	salesid,_ := this.GetInt("id")
+	ssales := &models.Sales{Id:salesid}
+	sales,err := ssales.GetSales()
+	//如果在没有找到数据则有误，友好的提示，不用抛出异常
+	if err !=nil{
+		this.Ctx.WriteString("数据有误")
+		this.StopRun()
+	}
+	//快递数据
+	ex := &models.Express{}
+	e := ex.ExSales(salesid)
+	//fmt.Printf("快递公司%s",e.Excmp)
+
+	//重组数据
+	list := make([]interface{},0)
+	row := make(map[string]interface{})
+	client := sales.Client.IdClinet()
+	row["id"]=sales.Id
+	row["clientname"]=client.Name
+	row["address"]=sales.SalesAddress
+	row["postid"]=sales.SalesPostid
+	row["phone"]=sales.SalesPhone
+	row["date"]=sales.SalesData
+	row["remarks"]=sales.Remarks
+	salespd := new(models.Salespd)
+	row["salespd"]=salespd.IdSales(salesid)
+	var a float32
+	for _,v := range salespd.IdSales(salesid){
+		a+=v.Totail
+	}
+	row["sums"]=strconv.FormatFloat(float64(a),'f',2,32)
+
+	list = append(list, row)
+	this.Data["pagetitle"]="订单详情"
+	this.Data["e"]=e
+	this.Data["salesid"]=salesid
+	this.Data["detail"]=list
+	this.TplName="sales/print.html"
+}
+
 func (this *SalesController)Upstatus()  {
 	salesid,_ := this.GetInt("id")
 	ssales := &models.Sales{Id:salesid,Status:"取消"}
