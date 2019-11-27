@@ -3,6 +3,10 @@
 默认使用Sqlite3数据库如需使用Mysql请在config/app.conf中修改
 *默认账号:admin 密码:123456*
 
+### 安装方法
+1. 源码直接`go run main.go install`
+2. 编译好的二进制包直接 `./main install`
+
 ### 首页
 ![avatar](https://github.com/aveyuan/MySales/blob/master/img/home.JPG)
 ### 客户页
