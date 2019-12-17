@@ -26,7 +26,7 @@ func (this *Contract) List() []*Contract {
 	var contract []*Contract
 	o := orm.NewOrm()
 	o.QueryTable(Product{}).All(&contract)
-	return products
+	return contract
 }
 
 //通过id查询联系人

@@ -39,7 +39,17 @@ func Init() {
 		beego.Error("不支持的数据库类型.")
 		os.Exit(1)
 	}
-	orm.RegisterModelWithPrefix(prefix, new(Tag), new(Client), new(Product), new(Sales), new(User), new(Salespd), new(Express))
+	orm.RegisterModelWithPrefix(
+		prefix,
+		new(Tag),
+		new(Client),
+		new(Product),
+		new(Sales),
+		new(User),
+		new(Salespd),
+		new(Express),
+		new(Conf),
+	)
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
 	}
