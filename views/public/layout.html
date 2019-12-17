@@ -43,30 +43,30 @@
                             <dd><a href="{{urlfor "TagController.Add"}}">添加标签</a></dd>
                         </dl>
                     </li>
-                <ul class="layui-nav layui-layout-right">
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">个人设置</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="{{urlfor "LoginController.UpdatePass"}}">修改密码</a></dd>
-                            <dd><a href="{{urlfor "LoginController.UpdateNike"}}">修改昵称</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item"><a href="{{urlfor "LoginController.Logout"}}">退出登录</a></li>
-                </ul>
+                    <ul class="layui-nav layui-layout-right">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">个人设置</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="{{urlfor "LoginController.UpdatePass"}}">修改密码</a></dd>
+                                <dd><a href="{{urlfor "LoginController.UpdateNike"}}">修改昵称</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item"><a href="{{urlfor "LoginController.Logout"}}">退出登录</a></li>
+                    </ul>
 
                 </ul>
             </div>
         </div>
     </div>
-<div class="layui-container">
-    <div class="layui-row">
-        {{.LayoutContent}}
+    <div class="layui-container">
+        <div class="layui-row">
+            {{.LayoutContent}}
+        </div>
     </div>
-</div>
 </div>
 <script>
     //JavaScript代码区域
-    layui.use('element', function(){
+    layui.use('element', function () {
         var element = layui.element;
 
     });

@@ -1,10 +1,10 @@
 <form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
-{{ .xsrfdata }}
+    {{ .xsrfdata }}
     <div class="layui-inline">
         <div class="layui-input-inline " style="width: 200px">
             <input type="text" class="layui-input" name="key" placeholder="可输入姓名/电话/地址查询" value="{{.key}}">
         </div>
-        <div class="layui-input-inline " style="padding-left: 10px" >
+        <div class="layui-input-inline " style="padding-left: 10px">
             <button class="layui-btn">搜索</button>
         </div>
     </div>
@@ -13,17 +13,17 @@
 <div>
     <table class="layui-table">
         <thead>
-            <td>ID</td>
-            <td>姓名</td>
-            <td>电话</td>
-            <td>地址</td>
-            <td>邮编</td>
-            <td>标签</td>
-            <td>备注</td>
-            <td>操作</td>
+        <td>ID</td>
+        <td>姓名</td>
+        <td>电话</td>
+        <td>地址</td>
+        <td>邮编</td>
+        <td>标签</td>
+        <td>备注</td>
+        <td>操作</td>
         </thead>
         <tbody>
-            {{range .clients}}
+        {{range .clients}}
             <tr>
                 <td>{{.id}}</td>
                 <td>{{.name}}</td>
@@ -33,10 +33,11 @@
                 <td>{{.tag.Name}}</td>
                 <td>{{.remarks}}</td>
                 <td>
-                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a href="{{urlfor "ClientController.Update"}}?id={{.id}}">编辑</a></button>
+                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a
+                                href="{{urlfor "ClientController.Update"}}?id={{.id}}">编辑</a></button>
                 </td>
             </tr>
-            {{end}}
+        {{end}}
         </tbody>
     </table>
 </div>
@@ -44,22 +45,22 @@
 
 
 <script>
-    layui.use(['form','laypage','jquery'],function () {
+    layui.use(['form', 'laypage', 'jquery'], function () {
         var form = layui.form,
-                $ = layui.$,
-                laypage = layui.laypage;
+            $ = layui.$,
+            laypage = layui.laypage;
 
         laypage.render({
             elem: 'pages'
-            ,count: {{.pagecount}}
-            ,curr:{{.page}}
-            ,limit:{{.pagelimit}}
-            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
-            ,jump: function(obj, first){
+            , count: {{.pagecount}}
+            , curr:{{.page}}
+            , limit:{{.pagelimit}}
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , jump: function (obj, first) {
 
                 //首次不执行
-                if(!first){
-                    location.href="{{urlfor "ClientController.List"}}?page="+obj.curr+"&limit="+obj.limit+"&key="+{{.key}};
+                if (!first) {
+                    location.href = "{{urlfor "ClientController.List"}}?page=" + obj.curr + "&limit=" + obj.limit + "&key=" +{{.key}};
 
                 }
             }

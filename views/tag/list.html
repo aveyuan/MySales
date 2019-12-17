@@ -1,20 +1,21 @@
 <div>
     <table class="layui-table">
         <thead>
-            <td>ID</td>
-            <td>标签名称</td>
-            <td>操作</td>
+        <td>ID</td>
+        <td>标签名称</td>
+        <td>操作</td>
         </thead>
         <tbody>
-            {{range .tag}}
+        {{range .tag}}
             <tr>
                 <td>{{.Id}}</td>
                 <td>{{.Name}}</td>
                 <td>
-                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a href="{{urlfor "TagController.Update"}}?id={{.Id}}">编辑</a></button>
+                    <button class="layui-btn layui-btn-sm" onclick="edit()"><a
+                                href="{{urlfor "TagController.Update"}}?id={{.Id}}">编辑</a></button>
                 </td>
             </tr>
-            {{end}}
+        {{end}}
         </tbody>
     </table>
 </div>
@@ -22,7 +23,7 @@
 
 
 <script>
-    layui.use(['form'],function () {
+    layui.use(['form'], function () {
         var form = layui.form;
 
     });

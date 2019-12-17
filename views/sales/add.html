@@ -1,13 +1,13 @@
 <h2 align="center" style="padding-top: 20px">产品销售单</h2>
 <form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
-{{ .xsrfdata }}
+    {{ .xsrfdata }}
     <div class="layui-form-item" pane="">
         <label class="layui-form-label">购买客户</label>
         <div class="layui-input-block">
             <select name="client">
-            {{range .clients}}
-                <option value="{{.Id}}" >{{.Name}}</option>
-            {{end}}
+                {{range .clients}}
+                    <option value="{{.Id}}">{{.Name}}</option>
+                {{end}}
             </select>
         </div>
     </div>
@@ -19,94 +19,94 @@
     </div>
     <table class="layui-table">
         <thead>
-            <td>产品</td>
-            <td>单价</td>
-            <td>数量</td>
-            <td>合计</td>
+        <td>产品</td>
+        <td>单价</td>
+        <td>数量</td>
+        <td>合计</td>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <select name="product">
-                        <option value=""></option>
+        <tr>
+            <td>
+                <select name="product">
+                    <option value=""></option>
                     {{range .products}}
                         <option value="{{.Id}}">{{.Name}}</option>
                     {{end}}
-                    </select>
-                </td>
-                <td><input type="text" name="unitprice" class="layui-input" id="unip1"></td>
-                <td><input type="text" name="number" class="layui-input" id="number1"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum1"></td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="product">
-                        <option value=""></option>
+                </select>
+            </td>
+            <td><input type="text" name="unitprice" class="layui-input" id="unip1"></td>
+            <td><input type="text" name="number" class="layui-input" id="number1"></td>
+            <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum1"></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="product">
+                    <option value=""></option>
                     {{range .products}}
                         <option value="{{.Id}}">{{.Name}}</option>
                     {{end}}
-                    </select>
-                </td>
-                <td><input type="text" name="unitprice" class="layui-input" id="unip2"></td>
-                <td><input type="text" name="number" class="layui-input" id="number2"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum2"></td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="product">
-                        <option value=""></option>
+                </select>
+            </td>
+            <td><input type="text" name="unitprice" class="layui-input" id="unip2"></td>
+            <td><input type="text" name="number" class="layui-input" id="number2"></td>
+            <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum2"></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="product">
+                    <option value=""></option>
                     {{range .products}}
                         <option value="{{.Id}}">{{.Name}}</option>
                     {{end}}
-                    </select>
-                </td>
-                <td><input type="text" name="unitprice" class="layui-input" id="unip3"></td>
-                <td><input type="text" name="number" class="layui-input" id="number3"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum3"></td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="product">
-                        <option value=""></option>
+                </select>
+            </td>
+            <td><input type="text" name="unitprice" class="layui-input" id="unip3"></td>
+            <td><input type="text" name="number" class="layui-input" id="number3"></td>
+            <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum3"></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="product">
+                    <option value=""></option>
                     {{range .products}}
                         <option value="{{.Id}}">{{.Name}}</option>
                     {{end}}
-                    </select>
-                </td>
-                <td><input type="text" name="unitprice" class="layui-input" id="unip4"></td>
-                <td><input type="text" name="number" class="layui-input" id="number4"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum4"></td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="product">
-                        <option value=""></option>
+                </select>
+            </td>
+            <td><input type="text" name="unitprice" class="layui-input" id="unip4"></td>
+            <td><input type="text" name="number" class="layui-input" id="number4"></td>
+            <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum4"></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="product">
+                    <option value=""></option>
                     {{range .products}}
                         <option value="{{.Id}}">{{.Name}}</option>
                     {{end}}
-                    </select>
-                </td>
-                <td><input type="text" name="unitprice" class="layui-input" id="unip5"></td>
-                <td><input type="text" name="number" class="layui-input" id="number5"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum5"></td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="product">
-                        <option value=""></option>
+                </select>
+            </td>
+            <td><input type="text" name="unitprice" class="layui-input" id="unip5"></td>
+            <td><input type="text" name="number" class="layui-input" id="number5"></td>
+            <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum5"></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="product">
+                    <option value=""></option>
                     {{range .products}}
                         <option value="{{.Id}}">{{.Name}}</option>
                     {{end}}
-                    </select>
-                </td>
-                <td><input type="text" name="unitprice" class="layui-input" id="unip6"></td>
-                <td><input type="text" name="number" class="layui-input" id="number6"></td>
-                <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum6"></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="text" class="layui-input" placeholder="备注" name="remarks"></td>
-                <td colspan="2" style="font-size: large">总计:<span id="result" style="color: red">Null</span></td>
-            </tr>
+                </select>
+            </td>
+            <td><input type="text" name="unitprice" class="layui-input" id="unip6"></td>
+            <td><input type="text" name="number" class="layui-input" id="number6"></td>
+            <td><input type="text" disabled name="number" placeholder="自动生成" class="layui-input" id="sum6"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="text" class="layui-input" placeholder="备注" name="remarks"></td>
+            <td colspan="2" style="font-size: large">总计:<span id="result" style="color: red">Null</span></td>
+        </tr>
         </tbody>
     </table>
 
@@ -114,89 +114,89 @@
 </form>
 
 <script>
-    layui.use(['form','laydate','jquery'],function () {
+    layui.use(['form', 'laydate', 'jquery'], function () {
         var form = layui.form,
             $ = layui.jquery,
-        laydate = layui.laydate;
+            laydate = layui.laydate;
 
         laydate.render({
-            elem:"#datetime",
-            type:"datetime"
+            elem: "#datetime",
+            type: "datetime"
         });
 
-        $('#number1').bind('input propertychange', function() {
-            var a = $(this).val()*$('#unip1').val();
+        $('#number1').bind('input propertychange', function () {
+            var a = $(this).val() * $('#unip1').val();
             $('#sum1').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
-        $('#unip1').bind('input propertychange', function() {
-            var a = $(this).val()*$('#number1').val();
+        $('#unip1').bind('input propertychange', function () {
+            var a = $(this).val() * $('#number1').val();
             $('#sum1').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
 
-        $('#number2').bind('input propertychange', function() {
-            var a = $(this).val()*$('#unip2').val();
+        $('#number2').bind('input propertychange', function () {
+            var a = $(this).val() * $('#unip2').val();
             $('#sum2').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
-        $('#unip2').bind('input propertychange', function() {
-            var a = $(this).val()*$('#number2').val();
+        $('#unip2').bind('input propertychange', function () {
+            var a = $(this).val() * $('#number2').val();
             $('#sum2').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
 
-        $('#number3').bind('input propertychange', function() {
-            var a = $(this).val()*$('#unip3').val();
+        $('#number3').bind('input propertychange', function () {
+            var a = $(this).val() * $('#unip3').val();
             $('#sum3').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
-        $('#unip3').bind('input propertychange', function() {
-            var a = $(this).val()*$('#number3').val();
+        $('#unip3').bind('input propertychange', function () {
+            var a = $(this).val() * $('#number3').val();
             $('#sum3').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
 
-        $('#number4').bind('input propertychange', function() {
-            var a = $(this).val()*$('#unip4').val();
+        $('#number4').bind('input propertychange', function () {
+            var a = $(this).val() * $('#unip4').val();
             $('#sum4').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
-        $('#unip4').bind('input propertychange', function() {
-            var a = $(this).val()*$('#number4').val();
+        $('#unip4').bind('input propertychange', function () {
+            var a = $(this).val() * $('#number4').val();
             $('#sum4').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
 
-        $('#number5').bind('input propertychange', function() {
-            var a = $(this).val()*$('#unip5').val();
+        $('#number5').bind('input propertychange', function () {
+            var a = $(this).val() * $('#unip5').val();
             $('#sum5').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
-        $('#unip5').bind('input propertychange', function() {
-            var a = $(this).val()*$('#number5').val();
+        $('#unip5').bind('input propertychange', function () {
+            var a = $(this).val() * $('#number5').val();
             $('#sum5').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
 
-        $('#number6').bind('input propertychange', function() {
-            var a = $(this).val()*$('#unip6').val();
+        $('#number6').bind('input propertychange', function () {
+            var a = $(this).val() * $('#unip6').val();
             $('#sum6').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
         });
-        $('#unip6').bind('input propertychange', function() {
-            var a = $(this).val()*$('#number6').val();
+        $('#unip6').bind('input propertychange', function () {
+            var a = $(this).val() * $('#number6').val();
             $('#sum6').val(a.toFixed(2));
             var b = sums()
             $('#result').html(b);
@@ -205,31 +205,31 @@
         //求和函数
         function sums() {
             var a1 = parseFloat($("#sum1").val());
-                if (isNaN(a1)){
-                    a1=1
-                }
+            if (isNaN(a1)) {
+                a1 = 1
+            }
             var a2 = parseFloat($("#sum2").val());
-                if (isNaN(a2)){
-                    a2=0
-                }
+            if (isNaN(a2)) {
+                a2 = 0
+            }
             var a3 = parseFloat($("#sum3").val());
-            if (isNaN(a3)){
-                a3=0
+            if (isNaN(a3)) {
+                a3 = 0
             }
             var a4 = parseFloat($("#sum4").val());
-            if (isNaN(a4)){
-                a4=0
+            if (isNaN(a4)) {
+                a4 = 0
             }
             var a5 = parseFloat($("#sum5").val());
-            if (isNaN(a5)){
-                a5=0
+            if (isNaN(a5)) {
+                a5 = 0
             }
             var a6 = parseFloat($("#sum6").val());
-            if (isNaN(a6)){
-                a6=0
+            if (isNaN(a6)) {
+                a6 = 0
             }
 
-            var sum = a1+a2+a3+a4+a5+a6;
+            var sum = a1 + a2 + a3 + a4 + a5 + a6;
             return sum;
         }
 

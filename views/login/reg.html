@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>{{.pagetitle}}</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
     <link rel="stylesheet" href="/static/css/login.css">
@@ -16,22 +17,22 @@
         <h3>Sales后台系统登录</h3>
         <div class="m-login-warp">
             <form action="" method="post" class="layui-form">
-            {{ .xsrfdata }}
-            <div class="layui-form-item">
-                <input type="text" name="username" class="layui-input" placeholder="用户名">
-            </div>
-            <div class="layui-form-item">
-                <input type="text" name="nikename" class="layui-input" placeholder="昵称">
-            </div>
-            <div class="layui-form-item">
-                <input type="password" class="layui-input" name="password1" placeholder="密码">
-            </div>
-            <div class="layui-form-item">
-                <input type="password" class="layui-input" name="password2" placeholder="确认密码">
-            </div>
-            <div class="layui-form-item">
-            记住我
-            </div>
+                {{ .xsrfdata }}
+                <div class="layui-form-item">
+                    <input type="text" name="username" class="layui-input" placeholder="用户名">
+                </div>
+                <div class="layui-form-item">
+                    <input type="text" name="nikename" class="layui-input" placeholder="昵称">
+                </div>
+                <div class="layui-form-item">
+                    <input type="password" class="layui-input" name="password1" placeholder="密码">
+                </div>
+                <div class="layui-form-item">
+                    <input type="password" class="layui-input" name="password2" placeholder="确认密码">
+                </div>
+                <div class="layui-form-item">
+                    记住我
+                </div>
                 <div class="layui-form-item m-login-btn">
                     <div class="layui-inline">
                         <button class="layui-btn layui-btn-normal" lay-submit lay-filter="login">登录</button>
@@ -48,7 +49,7 @@
 </div>
 
 <script>
-    layui.use('form', function() {
+    layui.use('form', function () {
         var form = layui.form;
 
     });

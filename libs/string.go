@@ -11,10 +11,10 @@ package libs
 import (
 	"crypto/md5"
 	"fmt"
+	"github.com/astaxie/beego"
 	"math/rand"
 	"regexp"
 	"time"
-	"github.com/astaxie/beego"
 )
 
 var emailPattern = regexp.MustCompile("[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[a-zA-Z0-9](?:[\\w-]*[\\w])?")

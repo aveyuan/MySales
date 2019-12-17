@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>{{.pagetitle}}</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
     <link rel="stylesheet" href="/static/css/login.css">
@@ -16,14 +17,15 @@
         <h3>Sales昵称修改</h3>
         <div class="m-login-warp">
             <form action="" method="post" class="layui-form">
-            {{ .xsrfdata }}
-             <input type="hidden" name="id" value="{{.user.Id}}">
-            <div class="layui-form-item">
-                <input type="text" name="username" disabled class="layui-input" placeholder="用户名" value="{{.user.Username}}">
-            </div>
-            <div class="layui-form-item">
-                <input type="text" name="nikename" class="layui-input" placeholder="昵称" value="{{.user.Nikename}}">
-            </div>
+                {{ .xsrfdata }}
+                <input type="hidden" name="id" value="{{.user.Id}}">
+                <div class="layui-form-item">
+                    <input type="text" name="username" disabled class="layui-input" placeholder="用户名"
+                           value="{{.user.Username}}">
+                </div>
+                <div class="layui-form-item">
+                    <input type="text" name="nikename" class="layui-input" placeholder="昵称" value="{{.user.Nikename}}">
+                </div>
                 <div class="layui-form-item m-login-btn">
                     <div class="layui-inline">
                         <button class="layui-btn layui-btn-normal" lay-submit lay-filter="login">修改昵称</button>
@@ -40,7 +42,7 @@
 </div>
 
 <script>
-    layui.use('form', function() {
+    layui.use('form', function () {
         var form = layui.form;
 
     });

@@ -1,5 +1,5 @@
 <form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
-{{ .xsrfdata }}
+    {{ .xsrfdata }}
     <div class="layui-form-item" pane>
         <label class="layui-form-label">客户名称</label>
         <div class="layui-input-block">
@@ -30,9 +30,9 @@
 
             <select name="tag">
                 <option value=""></option>
-            {{range .tag}}
-                <option value="{{.Id}}" >{{.Name}}</option>
-            {{end}}
+                {{range .tag}}
+                    <option value="{{.Id}}">{{.Name}}</option>
+                {{end}}
             </select>
         </div>
     </div>
@@ -46,7 +46,7 @@
 </form>
 
 <script>
-    layui.use(['form'],function () {
+    layui.use(['form'], function () {
         var form = layui.form;
 
     });

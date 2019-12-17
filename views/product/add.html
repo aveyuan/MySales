@@ -1,5 +1,5 @@
 <form class="layui-form layui-form-pane" action="" method="post" style="padding-top: 20px">
-{{ .xsrfdata }}
+    {{ .xsrfdata }}
     <div class="layui-form-item" pane>
         <label class="layui-form-label">产品名称</label>
         <div class="layui-input-block">
@@ -45,11 +45,11 @@
     <button type="submit" class="layui-btn layui-btn-normal">添加产品</button>
 </form>
 <script>
-    layui.use('laydate',function () {
+    layui.use('laydate', function () {
         var laydate = layui.laydate;
 
         laydate.render({
-            elem:'#stime'
+            elem: '#stime'
         });
     });
 </script>
